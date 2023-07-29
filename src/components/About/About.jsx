@@ -2,7 +2,7 @@ import React, { useRef, useEffect } from "react";
 import styles from "./About.module.css";
 import { AiOutlineInstagram, AiOutlineYoutube } from "react-icons/ai";
 
-const About = ({ timeline, ease, scrollTrigger }) => {
+const About = ({ timeline, ease }) => {
     let mainTitle = useRef();
     let mainSubtitle = useRef();
     let socialIconInst = useRef();
@@ -34,7 +34,7 @@ const About = ({ timeline, ease, scrollTrigger }) => {
     }, []);
 
     return (
-        <section>
+        <section className={styles.about}>
             <div className="container">
                 <div className={styles.aboutWrapper}>
                     <div className={styles.titleGroup}>

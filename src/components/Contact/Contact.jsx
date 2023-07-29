@@ -1,18 +1,45 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import styles from "./Contact.module.css";
 import { AiOutlineInstagram, AiOutlineMail, AiOutlinePhone, AiOutlineWhatsApp } from "react-icons/ai";
 import { LiaTelegramPlane } from "react-icons/lia";
 
-const Contact = () => {
+const Contact = ({ timeline, ease }) => {
+    let mainTitle = useRef();
+    let mainSubtitle = useRef();
+    let form = useRef();
+
+    useEffect(() => {
+        timeline.from(mainTitle.current, 1, {
+            opacity: 0,
+            x: -100,
+        });
+        timeline.from(mainSubtitle.current, 1, {
+            opacity: 0,
+            x: 100,
+        });
+        timeline.from(form.current, 1, {
+            opacity: 0,
+            y: 100,
+            stagger: {
+                amount: 0.4,
+            },
+            ease: ease,
+        });
+    }, []);
+
     return (
         <section>
             <div className="container">
                 <div className={styles.contactWrapper}>
                     <div className={styles.titleGroup}>
-                        <p className={styles.title}>Let's keep in touch</p>
-                        <p className={styles.subtitle}>Do you wanna hire me? Easy-peezy - text, call or fill the form :)</p>
+                        <p ref={mainTitle} className={styles.title}>
+                            Let's keep in touch
+                        </p>
+                        <p ref={mainSubtitle} className={styles.subtitle}>
+                            Do you wanna hire me? Easy-peezy - text, call or fill the form :)
+                        </p>
                     </div>
-                    <div className={styles.contactForm}>
+                    <div ref={form} className={styles.contactForm}>
                         <div className={styles.contactInfo}>
                             <p className={styles.contactText}>
                                 Thank you for considering my services. Feel free to reach out to me for any inquiries or collaborations. I look forward to

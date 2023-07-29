@@ -1,20 +1,56 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import styles from "./Skills.module.css";
 import { ReactComponent as Motion } from "../../assets/motion.svg";
 import { ReactComponent as Postprod } from "../../assets/postprod.svg";
 import { ReactComponent as Voiceover } from "../../assets/voiceover.svg";
 import { ReactComponent as Advert } from "../../assets/advertising.svg";
 
-const Skills = () => {
+const Skills = ({ timeline, ease }) => {
+    const mainTitle = useRef();
+    const mainSubtitle = useRef();
+    const description = useRef();
+    const skillItem1 = useRef();
+    const skillItem2 = useRef();
+    const skillItem3 = useRef();
+    const skillItem4 = useRef();
+
+    useEffect(() => {
+        timeline.from(mainTitle.current, 1, {
+            opacity: 0,
+            x: -100,
+        });
+        timeline.from(mainSubtitle.current, 1, {
+            opacity: 0,
+            x: 100,
+        });
+        timeline.from(description.current, 1, {
+            opacity: 0,
+            x: -100,
+
+            ease: ease,
+        });
+        timeline.from([skillItem1.current, skillItem2.current, skillItem3.current, skillItem4.current], 1, {
+            opacity: 0,
+            y: 100,
+            stagger: {
+                amount: 1.2,
+            },
+        });
+    }, []);
+
     return (
         <section>
             <div className="container">
                 <div className={styles.skillsWrapper}>
                     <div className={styles.titleGroup}>
-                        <p className={styles.title}>skills</p>
-                        <p className={styles.subtitle}>What can I do for you?</p>
+                        <p ref={mainTitle} className={styles.title}>
+                            skills
+                        </p>
+                        <p ref={mainSubtitle} className={styles.subtitle}>
+                            What can I do for you?
+                        </p>
                     </div>
-                    <div className={styles.skillsDescription}>
+                    <div ref={description} className={styles.skillsDescription}>
                         <p className={styles.descriptionItem}>
                             With a keen eye for detail and a passion for storytelling, I seamlessly transform raw footage into compelling narratives. Beyond
                             editing, my voiceover skills add a professional and engaging touch to videos, making them truly stand out.
@@ -32,7 +68,7 @@ const Skills = () => {
                     </div>
 
                     <div className={styles.skills}>
-                        <div className={styles.skillsItem}>
+                        <div ref={skillItem1} className={styles.skillsItem}>
                             <Motion className={styles.iconE} />
                             <p className={styles.skillTitle}>Motion Design</p>
                             <p className={styles.skillsItemDesc}>
@@ -40,7 +76,7 @@ const Skills = () => {
                                 dynamic and mesmerizing animations that bring your ideas to life.
                             </p>
                         </div>
-                        <div className={styles.skillsItem}>
+                        <div ref={skillItem2} className={styles.skillsItem}>
                             <Advert className={styles.icon} />
                             <p className={styles.skillTitle}>Advertisement</p>
                             <p className={styles.skillsItemDesc}>
@@ -48,7 +84,7 @@ const Skills = () => {
                                 and captivating storytelling to leave a lasting impression on your audience.
                             </p>
                         </div>
-                        <div className={styles.skillsItem}>
+                        <div ref={skillItem3} className={styles.skillsItem}>
                             <Postprod className={styles.iconQ} />
                             <p className={styles.skillTitle}>Post Production</p>
                             <p className={styles.skillsItemDesc}>
@@ -56,7 +92,7 @@ const Skills = () => {
                                 achieve a polished and professional look.
                             </p>
                         </div>
-                        <div className={styles.skillsItem}>
+                        <div ref={skillItem4} className={styles.skillsItem}>
                             <Voiceover className={styles.icon} />
                             <p className={styles.skillTitle}>Voiceover</p>
                             <p className={styles.skillsItemDesc}>

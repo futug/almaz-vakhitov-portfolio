@@ -7,6 +7,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
 
 import { ReactComponent as Quotes } from "../../assets/quotes.svg";
+import { MdOutlineSwipe } from "react-icons/md";
 
 const Feedback = () => {
     return (
@@ -79,6 +80,9 @@ const Feedback = () => {
                             </div>
                         </SwiperSlide>
                     </Swiper>
+                    <div className={styles.swipeIcons}>
+                        <MdOutlineSwipe className={styles.swipe} />
+                    </div>
                 </div>
             </div>
         </section>

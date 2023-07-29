@@ -112,3 +112,35 @@
 .socialIco:hover * {
     fill: #ff3297;
 }
+
+@media (max-width: 1024px) {
+    .contactForm {
+        display: flex;
+        flex-direction: column-reverse;
+        align-items: center;
+        gap: 40px;
+        text-align: center;
+        justify-content: center;
+    }
+
+    .inputField {
+        min-width: 300px;
+    }
+
+    .contactInfo {
+        align-items: center;
+        gap: 40px;
+    }
+
+    .title::after {
+        width: 50%;
+        right: -60%;
+    }
+}
+
+@media (max-width: 375px) {
+    .title::after {
+        width: 30%;
+        right: -40%;
+    }
+}

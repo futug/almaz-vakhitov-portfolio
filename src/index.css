@@ -118,3 +118,10 @@ button {
 .swiper-button-next {
     color: #fefffe !important;
 }
+
+@media (max-width: 1024px) {
+    .swiper-button-prev,
+    .swiper-button-next {
+        display: none !important;
+    }
+}

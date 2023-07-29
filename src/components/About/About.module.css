@@ -1,5 +1,8 @@
-.aboutWrapper {
-    margin-top: 200px;
+.about {
+    background-color: #050505;
+    height: 100vh;
+    display: flex;
+    align-items: center;
 }
 
 .titleGroup {
@@ -47,7 +50,7 @@
 }
 
 .photoWrapper {
-    width: 100%;
+    width: 450px;
     overflow: hidden;
     display: block;
     height: 100%;
@@ -102,4 +105,45 @@
 
 .description {
     margin-top: 20px;
+}
+
+@media (max-width: 1024px) {
+    .about {
+        height: 100%;
+        padding: 100px 0;
+    }
+    .content {
+        flex-direction: column;
+        align-items: center;
+        gap: 40px;
+        text-align: center;
+        justify-content: center;
+    }
+
+    .name {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 10px;
+        flex-direction: column;
+    }
+
+    .name::after {
+        width: 40%;
+    }
+
+    .photoWrapper {
+        width: 100%;
+    }
+    .photo {
+        width: 400px;
+        height: auto;
+    }
+}
+
+@media (max-width: 425px) {
+    .photo {
+        width: 300px;
+    }
 }

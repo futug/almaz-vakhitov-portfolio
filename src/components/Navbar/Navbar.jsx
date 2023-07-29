@@ -1,8 +1,8 @@
 import React, { useRef, useEffect, useState } from "react";
 import styles from "./Navbar.module.css";
-import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
+import { AiOutlineClose, AiOutlineDownload, AiOutlineMenu } from "react-icons/ai";
 
-const Navbar = ({ timeline, ease }) => {
+const Navbar = ({ timeline, ease, ScrollTrigger }) => {
     const navLinks = [
         {
             id: 0,
@@ -35,13 +35,13 @@ const Navbar = ({ timeline, ease }) => {
     let logoRef = useRef(null);
     let listItemsRefs = useRef([]);
 
-    const handlerScrollDown = () => {
-        if (window.pageYOffset > 50) {
-            setScrollDown(!scrollDown);
-        } else {
-            setScrollDown(false);
-        }
-    };
+    // const handlerScrollDown = () => {
+    //     if (window.pageYOffset > 50) {
+    //         setScrollDown(!scrollDown);
+    //     } else {
+    //         setScrollDown(false);
+    //     }
+    // };
 
     useEffect(() => {
         timeline.from(logoRef.current, 1, {
@@ -84,6 +84,9 @@ const Navbar = ({ timeline, ease }) => {
                     </p>
                     <nav>
                         <ul className={isOpen ? `${styles.navbarlist} ${styles.navbarlistActive}` : styles.navbarlist}>
+                            <a href="./VakhitovCV.pdf" target="_blank" className={styles.download}>
+                                <AiOutlineDownload size={25} />
+                            </a>
                             {navLinks.map((link, index) => (
                                 <li ref={(el) => (listItemsRefs.current[index] = el)} className={styles.listItem} key={link.id}>
                                     <a href={link.link}>{link.name}</a>
