@@ -30,7 +30,6 @@ nav {
     letter-spacing: 4px;
     filter: brightness(0.8);
     position: relative;
-    overflow: hidden;
     text-shadow: 1px 1px 2px red, 0 0 1em blue, 0 0 0.2em blue;
 }
 .download {
@@ -133,6 +132,15 @@ nav {
 }
 
 @media (max-width: 768px) {
+    nav {
+        gap: 20px;
+    }
+    .downloadLabel {
+        display: none;
+    }
+    .navbar {
+        gap: 20px;
+    }
     .navbarlist {
         display: flex;
         position: fixed;
@@ -162,6 +170,7 @@ nav {
     }
     .hamburger {
         display: block;
+        margin-top: -3px;
     }
 
     .closeItem {
@@ -169,5 +178,15 @@ nav {
         position: fixed;
         top: 20px;
         right: 20px;
+    }
+}
+
+@media (max-width: 575px) {
+    .logo > span {
+        display: none;
+    }
+
+    .logo {
+        font-size: 18px;
     }
 }
