@@ -1,0 +1,72 @@
+.feedback {
+    background-color: #050505;
+}
+
+.feedbackWrapper {
+    margin-top: 100px;
+    padding-bottom: 60px;
+}
+
+.titleGroup {
+    filter: brightness(0.8);
+    padding-top: 60px;
+}
+.title {
+    font-size: 18px;
+    font-weight: 400;
+    text-transform: uppercase;
+    padding: 0;
+    margin: 0;
+    width: fit-content;
+    position: relative;
+}
+
+.title::after {
+    content: "";
+    display: block;
+    width: 100%;
+    height: 2px;
+    background-color: #fefffe;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: -130%;
+}
+.subtitle {
+    font-size: 24px;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.slide {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.quotes {
+    width: 150px;
+    opacity: 0.6;
+}
+
+.quotes * {
+    fill: #fefffe;
+}
+
+.quoteBody {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 90px;
+    margin-top: 60px;
+}
+
+.quote {
+    max-width: 700px;
+}
+
+.quoteAuthor {
+    font-size: 16px;
+    font-weight: 100;
+    margin-left: 500px;
+}

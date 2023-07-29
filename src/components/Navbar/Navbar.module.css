@@ -1,0 +1,115 @@
+.header {
+    position: sticky;
+    top: 0;
+    z-index: 999;
+    transition: all 0.3s ease-in-out;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 0;
+    transition: all 0.3s ease-in-out;
+}
+
+.logo {
+    font-weight: 700;
+    font-size: 21px;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    filter: brightness(0.8);
+    position: relative;
+    overflow: hidden;
+    text-shadow: 1px 1px 2px red, 0 0 1em blue, 0 0 0.2em blue;
+}
+
+.logo:hover {
+    filter: brightness(0.4);
+}
+
+.logo > span {
+    color: #ff3297;
+    text-shadow: none;
+}
+.navbarlist {
+    list-style: none;
+    color: #fefffe;
+    display: flex;
+    gap: 40px;
+}
+
+.listItem {
+    color: #fefffe;
+    text-transform: uppercase;
+    font-size: 16px;
+    font-weight: 700;
+    filter: brightness(0.8);
+    letter-spacing: 1px;
+}
+
+.listItem:hover {
+    filter: brightness(0.4);
+}
+.listItem:hover::after {
+    transform: scale(1);
+}
+.listItem::after {
+    content: "";
+    width: 100%;
+    height: 4px;
+    transform: scale(0);
+    transform-origin: right;
+    background-color: #ff3297;
+    display: block;
+    transition: all 0.3s ease-in-out;
+}
+
+.listItem > a {
+    color: inherit;
+    text-shadow: 1px 1px 2px red, 0 0 1em blue, 0 0 0.2em blue;
+}
+
+.hamburger {
+    cursor: pointer;
+    display: none;
+}
+
+.closeItem {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .navbarlist {
+        display: flex;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: #101110;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        transform: translateY(-100%);
+        transition: all 0.8s ease-in-out;
+    }
+    .navbarlistActive {
+        transform: translateY(0);
+    }
+
+    .listItem {
+        font-size: 24px;
+    }
+    .hamburger {
+        display: block;
+    }
+
+    .closeItem {
+        display: block;
+        position: fixed;
+        top: 20px;
+        right: 20px;
+    }
+}
