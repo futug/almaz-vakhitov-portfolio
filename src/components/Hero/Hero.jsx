@@ -62,6 +62,8 @@ const Hero = ({ timeline }) => {
 
     return (
         <section>
+            <img className={styles.heroBackground} src="./background-asset.svg" alt="" />
+            <img className={styles.heroBackgroundRight} src="./background-asset.svg" alt="" />
             <div className="container">
                 <div className={styles.heroWrapper}>
                     <div className={styles.heroLeft}>
@@ -81,6 +83,7 @@ const Hero = ({ timeline }) => {
                             </div>
                         ))}
                     </div>
+
                     <div className={styles.heroRight}>
                         {heroVidePreviewsRight.map((item, index) => (
                             <div ref={(el) => (rightsideItems.current[index] = el)} className={styles.imageWrapper} key={item.id}>

@@ -6,6 +6,22 @@
     justify-items: center;
 }
 
+.heroBackground {
+    position: fixed;
+    top: -30%;
+
+    z-index: -1;
+    transform: rotate(350deg);
+}
+
+.heroBackgroundRight {
+    position: fixed;
+    top: 30%;
+
+    z-index: -1;
+    right: 0;
+    transform: rotate(140deg);
+}
 .imageWrapper {
     width: fit-content;
     overflow: hidden;
