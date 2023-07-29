@@ -1,31 +1,44 @@
 import React, { useRef, useEffect, useState } from "react";
 import styles from "./Navbar.module.css";
 import { AiOutlineClose, AiOutlineDownload, AiOutlineMenu } from "react-icons/ai";
+import i18next, { t } from "i18next";
+import { changeLanguage } from "i18next";
+import { useTranslation } from "react-i18next";
 
-const Navbar = ({ timeline, ease, ScrollTrigger }) => {
+import { BiSolidDownArrow } from "react-icons/bi";
+
+const Navbar = ({ timeline, ease, lang, setLang }) => {
     const navLinks = [
         {
             id: 0,
             name: "About",
+            nameRu: "Обо мне",
+            nameTr: "Hakkımda",
             link: "#",
         },
         {
             id: 1,
             name: "Skills",
+            nameRu: "Навыки",
+            nameTr: "Talimatlar",
             link: "#",
         },
         {
             id: 2,
             name: "Feedback",
+            nameRu: "Отзывы",
+            nameTr: "Görüşmeler",
             link: "#",
         },
         {
             id: 3,
             name: "Contact",
+            nameRu: "Контакты",
+            nameTr: "İletişim",
             link: "#",
         },
     ];
-
+    const { t } = useTranslation();
     const [isOpen, setIsOpen] = useState(false);
     const [scrollDown, setScrollDown] = useState(false);
     const handleMenuOpen = () => {
@@ -34,14 +47,6 @@ const Navbar = ({ timeline, ease, ScrollTrigger }) => {
 
     let logoRef = useRef(null);
     let listItemsRefs = useRef([]);
-
-    // const handlerScrollDown = () => {
-    //     if (window.pageYOffset > 50) {
-    //         setScrollDown(!scrollDown);
-    //     } else {
-    //         setScrollDown(false);
-    //     }
-    // };
 
     useEffect(() => {
         timeline.from(logoRef.current, 1, {
@@ -75,6 +80,11 @@ const Navbar = ({ timeline, ease, ScrollTrigger }) => {
         };
     }, []);
 
+    const handleLang = (e) => {
+        changeLanguage(e.target.value);
+        setLang(e.target.value);
+    };
+
     return (
         <header className={styles.header} style={scrollDown ? { backgroundColor: "#101110" } : {}}>
             <div className="container">
@@ -82,19 +92,33 @@ const Navbar = ({ timeline, ease, ScrollTrigger }) => {
                     <p ref={logoRef} className={styles.logo}>
                         almaz vakhitov <span className={styles.videomaker}>videomaker</span>
                     </p>
-                    <nav>
-                        <ul className={isOpen ? `${styles.navbarlist} ${styles.navbarlistActive}` : styles.navbarlist}>
+                    <div className={styles.menu}>
+                        <div className={styles.downloadCV}>
+                            <p className={styles.downloadLabel}>{t("downloadCV")}</p>
                             <a href="./VakhitovCV.pdf" target="_blank" className={styles.download}>
                                 <AiOutlineDownload size={25} />
                             </a>
-                            {navLinks.map((link, index) => (
-                                <li ref={(el) => (listItemsRefs.current[index] = el)} className={styles.listItem} key={link.id}>
-                                    <a href={link.link}>{link.name}</a>
-                                </li>
-                            ))}
-                            <AiOutlineClose onClick={handleMenuOpen} size={25} className={styles.closeItem} />
-                        </ul>
-                    </nav>
+                        </div>
+                        <nav>
+                            <ul className={isOpen ? `${styles.navbarlist} ${styles.navbarlistActive}` : styles.navbarlist}>
+                                {navLinks.map((link, index) => (
+                                    <li ref={(el) => (listItemsRefs.current[index] = el)} className={styles.listItem} key={link.id}>
+                                        <a href={link.link}>{lang === "en" ? link.name : lang === "ru" ? link.nameRu : link.nameTr}</a>
+                                    </li>
+                                ))}
+                                <AiOutlineClose onClick={handleMenuOpen} size={25} className={styles.closeItem} />
+                            </ul>
+                            <div className={styles.langChoice}>
+                                <select className={styles.langInput} value={lang} onChange={handleLang} name="language" id="">
+                                    <option value="ru">ru</option>
+                                    <option value="en">en</option>
+                                    <option value="tr">tr</option>
+                                </select>
+                                <BiSolidDownArrow size={10} />
+                            </div>
+                        </nav>
+                    </div>
+
                     <AiOutlineMenu onClick={handleMenuOpen} size={25} className={styles.hamburger} />
                 </div>
             </div>

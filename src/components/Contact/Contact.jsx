@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from "react";
 import styles from "./Contact.module.css";
 import { AiOutlineInstagram, AiOutlineMail, AiOutlinePhone, AiOutlineWhatsApp } from "react-icons/ai";
 import { LiaTelegramPlane } from "react-icons/lia";
+import { useTranslation } from "react-i18next";
 
 const Contact = ({ timeline, ease }) => {
     let mainTitle = useRef();
@@ -26,25 +27,22 @@ const Contact = ({ timeline, ease }) => {
             ease: ease,
         });
     }, []);
-
+    const { t } = useTranslation();
     return (
         <section>
             <div className="container">
                 <div className={styles.contactWrapper}>
                     <div className={styles.titleGroup}>
                         <p ref={mainTitle} className={styles.title}>
-                            Let's keep in touch
+                            {t("contactTitle")}
                         </p>
                         <p ref={mainSubtitle} className={styles.subtitle}>
-                            Do you wanna hire me? Easy-peezy - text, call or fill the form :)
+                            {t("contactSubTitle")}
                         </p>
                     </div>
                     <div ref={form} className={styles.contactForm}>
                         <div className={styles.contactInfo}>
-                            <p className={styles.contactText}>
-                                Thank you for considering my services. Feel free to reach out to me for any inquiries or collaborations. I look forward to
-                                hearing from you and creating something amazing together!
-                            </p>
+                            <p className={styles.contactText}>{t("contactText")}</p>
                             <div className={styles.contactIcons}>
                                 <a href="#" target="_blank">
                                     {" "}
@@ -67,16 +65,22 @@ const Contact = ({ timeline, ease }) => {
                         </div>
                         <form action="#" method="POST">
                             <div className={styles.inputField}>
-                                <input className={styles.input} type="text" placeholder="Name" name="name" id="name" required />
+                                <input className={styles.input} type="text" placeholder={t("inputName")} name="name" id="name" required />
                             </div>
                             <div className={styles.inputField}>
-                                <input className={styles.input} type="email" placeholder="Email" name="email" id="email" required />
+                                <input className={styles.input} type="email" placeholder={t("inputEmail")} name="email" id="email" required />
                             </div>
                             <div className={styles.inputField}>
-                                <textarea className={`${styles.input} ${styles.message}`} placeholder="Message" name="message" id="message" required />
+                                <textarea
+                                    className={`${styles.input} ${styles.message}`}
+                                    placeholder={t("inputMessage")}
+                                    name="message"
+                                    id="message"
+                                    required
+                                />
                             </div>
                             <button className={styles.button} type="submit" onClick={(e) => e.preventDefault()}>
-                                Send
+                                {t("button")}
                             </button>
                         </form>
                     </div>

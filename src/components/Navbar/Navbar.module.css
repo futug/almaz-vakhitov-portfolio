@@ -4,6 +4,16 @@
     z-index: 999;
     transition: all 0.3s ease-in-out;
 }
+nav {
+    display: flex;
+    gap: 40px;
+    align-items: center;
+}
+.menu {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+}
 
 .navbar {
     display: flex;
@@ -25,7 +35,7 @@
 }
 .download {
     color: #fefffe;
-    text-shadow: 1px 1px 2px red, 0 0 1em blue, 0 0 0.2em blue;
+    /* text-shadow: 1px 1px 2px red, 0 0 1em blue, 0 0 0.2em blue; */
 }
 .logo:hover {
     filter: brightness(0.4);
@@ -82,6 +92,46 @@
     display: none;
 }
 
+.downloadCV {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    filter: brightness(0.8);
+    overflow: hidden;
+    cursor: pointer;
+}
+
+.downloadLabel {
+    opacity: 0;
+    transform-origin: right;
+    transform: translateX(100%);
+    transition: all 0.4s ease-in-out;
+}
+
+.downloadCV:hover .downloadLabel {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.langChoice {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    filter: brightness(0.8);
+    margin-top: -4px;
+}
+.langInput {
+    border: none;
+    padding: 0;
+    background-color: transparent;
+    color: #fefffe;
+    margin: 0;
+    text-transform: uppercase;
+    outline: none;
+    font-weight: 700;
+    cursor: pointer;
+}
+
 @media (max-width: 768px) {
     .navbarlist {
         display: flex;
@@ -97,6 +147,11 @@
         gap: 10px;
         transform: translateY(-100%);
         transition: all 0.8s ease-in-out;
+    }
+
+    .menu {
+        gap: 20px;
+        height: fit-content;
     }
     .navbarlistActive {
         transform: translateY(0);
