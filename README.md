@@ -11,8 +11,6 @@ The next stage of this project, after it'll be done ofc, is link it with one of 
 
 ## Design
 
-I didn't have any design when decided to create this app, so i went to behance and found this reference: https://inlnk.ru/68k3QV and tried to implement it with my changes.
+I didn't have any design when decided to create this app, so i went to behance and found this [Link REFERENCE](https://www.behance.net/gallery/172178533/Videomaker-Curitiba-Landing-Page?tracking_source=search_projects%7Cvideomaker) and tried to implement it with my changes.
 
-## You can see the progress here:
-
-### https://almaz-vakhitov-portfolio.vercel.app
+## You can see the progress [Link HERE](https://almaz-vakhitov-portfolio.vercel.app/)
