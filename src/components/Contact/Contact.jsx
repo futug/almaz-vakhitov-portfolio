@@ -117,7 +117,7 @@ const Contact = ({ timeline, ease }) => {
     }, [emailError, nameError]);
 
     return (
-        <section>
+        <section id="contact">
             <div className="container">
                 <div className={styles.contactWrapper}>
                     <div className={styles.titleGroup}>

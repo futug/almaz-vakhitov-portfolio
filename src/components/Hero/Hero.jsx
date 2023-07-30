@@ -7,6 +7,10 @@ import { useTranslation } from "react-i18next";
 import { CiPlay1 } from "react-icons/ci";
 import { AiOutlineClose } from "react-icons/ai";
 
+import { VIDEO_PREVIEWS_LEFT, VIDEO_PREVIEWS_RIGHT } from "../../utils/constants";
+
+const heroVidePreviewsLeft = VIDEO_PREVIEWS_LEFT;
+const heroVidePreviewsRight = VIDEO_PREVIEWS_RIGHT;
 const Hero = ({ timeline, lang }) => {
     const [previewUrl, setPreviewUrl] = useState("");
     const [videoIsOpen, setVideoIsOpen] = useState(false);
@@ -16,65 +20,6 @@ const Hero = ({ timeline, lang }) => {
     };
 
     useLockScroll(videoIsOpen);
-    const heroVidePreviewsLeft = [
-        {
-            id: 0,
-            srcJpeg: "./image6.jpeg",
-            srcWebp: "./image6.webp",
-            title: "New Balance - 530",
-            titleRu: "New Balance - 530",
-            titleTr: "New Balance - 530",
-            src: "https://www.youtube.com/embed/5ocRDkT8new5",
-        },
-        {
-            id: 1,
-            srcJpeg: "./image3.jpeg",
-            srcWebp: "./image3.webp",
-            title: "Annoyed Triangle",
-            titleRu: "Недовольный треугольник",
-            titleTr: "Rahatsız Üçgen",
-            src: "https://www.youtube.com/embed/5ocRDkT8new1",
-        },
-        {
-            id: 2,
-            srcJpeg: "./image5.jpeg",
-            srcWebp: "./image5.webp",
-            title: "Sneakers Shop",
-            titleRu: 'Магазин "Концепт"',
-            titleTr: "Spor Ayakkabı Mağazası",
-            src: "https://www.youtube.com/embed/5ocRDkT8new2",
-        },
-    ];
-
-    const heroVidePreviewsRight = [
-        {
-            id: 0,
-            srcJpeg: "./image2.jpeg",
-            srcWebp: "./image2.webp",
-            title: "Most Expensive Jordans",
-            titleRu: "Самые дорогие Джорданы",
-            titleTr: "En Pahalı Jordanlar",
-            src: "https://www.youtube.com/embed/5ocRDkT8new3",
-        },
-        {
-            id: 1,
-            srcJpeg: "./image4.jpeg",
-            srcWebp: "./image4.webp",
-            title: "New Wave Russian Politics",
-            titleRu: "Русская политика, новой волны",
-            titleTr: "Yeni Rus Polis",
-            src: "https://www.youtube.com/embed/5ocRDkT8new4",
-        },
-        {
-            id: 3,
-            srcJpeg: "./image1.jpeg",
-            srcWebp: "./image1.webp",
-            title: "Crypto God",
-            titleRu: "Крипто Бог",
-            titleTr: "Kripto Tanrısı",
-            src: "https://www.youtube.com/embed/5ocRDkT8new",
-        },
-    ];
 
     const { t } = useTranslation();
     let leftsideItems = useRef([]);

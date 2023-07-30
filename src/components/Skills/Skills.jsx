@@ -41,7 +41,7 @@ const Skills = ({ timeline, ease }) => {
 
     const { t } = useTranslation();
     return (
-        <section>
+        <section id="skills">
             <div className="container">
                 <div className={styles.skillsWrapper}>
                     <div className={styles.titleGroup}>

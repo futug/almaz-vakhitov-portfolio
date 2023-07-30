@@ -59,6 +59,10 @@ nav {
     letter-spacing: 1px;
 }
 
+.link {
+    cursor: pointer;
+}
+
 .listItem:hover {
     filter: brightness(0.6);
 }

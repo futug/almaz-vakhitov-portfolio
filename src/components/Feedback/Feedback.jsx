@@ -12,7 +12,7 @@ import { MdOutlineSwipe } from "react-icons/md";
 const Feedback = () => {
     const { t } = useTranslation();
     return (
-        <section className={styles.feedback}>
+        <section className={styles.feedback} id="feedback">
             <div className="container">
                 <div className={styles.feedbackWrapper}>
                     <div className={styles.titleGroup}>

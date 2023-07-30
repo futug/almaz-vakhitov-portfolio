@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useTranslation } from "react-i18next";
 import "./App.css";
 import Navbar from "./components/Navbar/Navbar";
@@ -12,7 +12,6 @@ import Feedback from "./components/Feedback/Feedback";
 import Contact from "./components/Contact/Contact";
 import { Footer } from "./components/Footer/Footer";
 import { PacmanLoader } from "react-spinners";
-import { SmoothWrapper } from "./components/SmoothWrapper/SmoothWrapper";
 
 function App() {
     const [isLoading, setIsLoading] = useState(true);
@@ -34,9 +33,18 @@ function App() {
         i18n.changeLanguage(lng);
     };
 
-    const currentLanguage = i18n.language;
+    const about = useRef();
+    const skills = useRef();
+    const feedback = useRef();
+    const contact = useRef();
 
-    console.log(currentLanguage);
+    const scrollIntoView = (elementRef) => {
+        window.scrollTo({
+            top: elementRef.current.offsetTop,
+            behavior: "smooth",
+        });
+    };
+
     return (
         <div className="App">
             {isLoading ? (
@@ -48,14 +56,28 @@ function App() {
                 </div>
             ) : (
                 <>
-                    <Navbar timeline={tl} ease={ease} changeLanguage={changeLanguage} lang={lang} setLang={setLang} />
+                    {/* pagetop anchor */}
+                    <div id="hero"></div>
+                    {/* pagetop anchor */}
+                    <Navbar
+                        timeline={tl}
+                        ease={ease}
+                        changeLanguage={changeLanguage}
+                        lang={lang}
+                        setLang={setLang}
+                        about={about}
+                        skills={skills}
+                        feedback={feedback}
+                        contact={contact}
+                        scrollIntoView={scrollIntoView}
+                    />
 
                     <main>
                         <Hero timeline={tl} ease={ease} t={t} lang={lang} />
-                        <About timeline={tl} ease={ease} />
-                        <Skills timeline={tl} ease={ease} />
-                        <Feedback timeline={tl} ease={ease} />
-                        <Contact timeline={tl} ease={ease} />
+                        <About timeline={tl} ease={ease} about={about} />
+                        <Skills timeline={tl} ease={ease} skills={skills} />
+                        <Feedback timeline={tl} ease={ease} feedback={feedback} />
+                        <Contact timeline={tl} ease={ease} contact={contact} />
                     </main>
 
                     <Footer />

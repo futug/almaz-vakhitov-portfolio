@@ -4,40 +4,15 @@ import { AiOutlineClose, AiOutlineDownload, AiOutlineMenu } from "react-icons/ai
 import { changeLanguage } from "i18next";
 import { useTranslation } from "react-i18next";
 import useLockScroll from "../../utils/hooks/useLockScroll";
+import { NAV_LINKS } from "../../utils/constants";
+
+import { Link } from "react-scroll";
 
 import { BiSolidDownArrow } from "react-icons/bi";
 import { BsFiletypePdf } from "react-icons/bs";
-const Navbar = ({ timeline, ease, lang, setLang }) => {
-    const navLinks = [
-        {
-            id: 0,
-            name: "About",
-            nameRu: "Обо мне",
-            nameTr: "Hakkımda",
-            link: "#",
-        },
-        {
-            id: 1,
-            name: "Skills",
-            nameRu: "Навыки",
-            nameTr: "Talimatlar",
-            link: "#",
-        },
-        {
-            id: 2,
-            name: "Feedback",
-            nameRu: "Отзывы",
-            nameTr: "Görüşmeler",
-            link: "#",
-        },
-        {
-            id: 3,
-            name: "Contact",
-            nameRu: "Контакты",
-            nameTr: "İletişim",
-            link: "#",
-        },
-    ];
+
+const navLinks = NAV_LINKS;
+const Navbar = ({ timeline, ease, lang, setLang, scrollIntoView }) => {
     const { t } = useTranslation();
     const [isOpen, setIsOpen] = useState(false);
 
@@ -90,22 +65,26 @@ const Navbar = ({ timeline, ease, lang, setLang }) => {
         <header className={styles.header} style={scrollDown ? { backgroundColor: "#101110" } : {}}>
             <div className="container">
                 <div className={styles.navbar} style={scrollDown ? { padding: "10px 0" } : {}}>
-                    <p ref={logoRef} className={styles.logo}>
-                        almaz vakhitov <span className={styles.videomaker}>videomaker</span>
-                    </p>
+                    <div>
+                        <Link to="hero" spy={true} smooth={true} offset={-50} duration={1000} onid="hero" className={styles.link}>
+                            <p ref={logoRef} className={styles.logo}>
+                                almaz vakhitov <span className={styles.videomaker}>videomaker</span>
+                            </p>
+                        </Link>
+                    </div>
                     <div className={styles.menu}>
                         <div className={styles.downloadCV}>
                             <p className={styles.downloadLabel}>{t("downloadCV")}</p>
                             <AiOutlineDownload size={25} className={styles.download} />
                             <div className={styles.cvPopup}>
                                 <div className={styles.cvPopupInnerRow}>
-                                    <a href="./Vakhitov-CV-ru.pdf" download={true} className={styles.cvPopupLink}>
+                                    <a href="./RusCV.pdf" download={true} className={styles.cvPopupLink}>
                                         <BsFiletypePdf className={styles.cvPopupIcon} size={25} />
                                         Ru-CV PDF-format
                                     </a>
                                 </div>
                                 <div className={styles.cvPopupInnerRow}>
-                                    <a href="./Vakhitov-CV-eng.pdf" download={true} className={styles.cvPopupLink}>
+                                    <a href="./EngCV.pdf" download={true} className={styles.cvPopupLink}>
                                         <BsFiletypePdf className={styles.cvPopupIcon} size={25} />
                                         Eng-CV PDF-format
                                     </a>
@@ -116,7 +95,9 @@ const Navbar = ({ timeline, ease, lang, setLang }) => {
                             <ul className={isOpen ? `${styles.navbarlist} ${styles.navbarlistActive}` : styles.navbarlist}>
                                 {navLinks.map((link, index) => (
                                     <li ref={(el) => (listItemsRefs.current[index] = el)} className={styles.listItem} key={link.id}>
-                                        <a href={link.link}>{lang === "en" ? link.name : lang === "ru" ? link.nameRu : link.nameTr}</a>
+                                        <Link to={link.name} spy={true} smooth={true} offset={-50} duration={500} onid={link.name} className={styles.link}>
+                                            {lang === "en" ? link.name : lang === "ru" ? link.nameRu : link.nameTr}
+                                        </Link>
                                     </li>
                                 ))}
                                 <AiOutlineClose onClick={handleMenuOpen} size={25} className={styles.closeItem} />

@@ -3,7 +3,7 @@ import styles from "./About.module.css";
 import { AiOutlineInstagram, AiOutlineYoutube } from "react-icons/ai";
 import { useTranslation } from "react-i18next";
 
-const About = ({ timeline, ease }) => {
+const About = ({ timeline, ease, about }) => {
     let mainTitle = useRef();
     let mainSubtitle = useRef();
     let socialIconInst = useRef();
@@ -37,7 +37,7 @@ const About = ({ timeline, ease }) => {
     const { t } = useTranslation();
 
     return (
-        <section className={styles.about}>
+        <section className={styles.about} id="about">
             <div className="container">
                 <div className={styles.aboutWrapper}>
                     <div className={styles.titleGroup}>
