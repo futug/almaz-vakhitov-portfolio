@@ -80,6 +80,21 @@
     align-items: center;
     justify-content: center;
     cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.icoBorderInst:hover {
+    background: #d6249f;
+    background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285aeb 90%);
+    border-color: #d6249f;
+}
+
+.icoBorderYouTube:hover {
+    background: #fefffe;
+}
+.icoBorderYouTube:hover {
+    background-color: #ff0100;
+    border-color: #ff0100;
 }
 
 .leftSideWrapper {

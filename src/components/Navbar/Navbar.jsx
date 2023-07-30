@@ -78,10 +78,9 @@ const Navbar = ({ timeline, ease, lang, setLang }) => {
             }
         };
 
-        handlerScrollDown(); // Вызываем функцию один раз при загрузке
-        window.addEventListener("scroll", handlerScrollDown); // Добавляем обработчик события прокрутки
+        handlerScrollDown();
+        window.addEventListener("scroll", handlerScrollDown);
         return () => {
-            // Удаляем обработчик события при размонтировании компонента
             window.removeEventListener("scroll", handlerScrollDown);
         };
     }, []);
@@ -132,7 +131,7 @@ const Navbar = ({ timeline, ease, lang, setLang }) => {
                                     <option value="en">en</option>
                                     <option value="tr">tr</option>
                                 </select>
-                                <BiSolidDownArrow size={10} />
+                                <BiSolidDownArrow size={10} className={styles.downArrow} />
                             </div>
                         </nav>
                     </div>

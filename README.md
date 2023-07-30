@@ -1,6 +1,6 @@
 # Almaz Vakhitov Site-portfolio/cv
 
-My friend is looking for a job as videomaker, and motion designer but he doesn't has opportunity to send the one link with examples of his work and CV to the hires.
+My friend is looking for a job as videomaker, and motion designer but he doesn't has opportunity to send the one link with examples of his work and CV to the employers.
 Instead of this he was sending the pdf-cv and link to google disk.
 
 So, i decided to help him, and create a web-app wich will reflect his work and strong sides.

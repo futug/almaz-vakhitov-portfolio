@@ -51,11 +51,19 @@ const About = ({ timeline, ease }) => {
                     <div className={styles.content}>
                         <div className={styles.rightSideWrapper}>
                             <div className={styles.socialIcons}>
-                                <div ref={socialIconInst} className={styles.icoBorder}>
-                                    <AiOutlineInstagram className={styles.icon} size={30} />
+                                <div ref={socialIconInst}>
+                                    <a href="https://www.instagram.com/etozhemazei/" target="_blank">
+                                        <div className={`${styles.icoBorder} ${styles.icoBorderInst}`}>
+                                            <AiOutlineInstagram className={styles.icon} size={30} />
+                                        </div>
+                                    </a>
                                 </div>
-                                <div ref={socialIconTube} className={styles.icoBorder}>
-                                    <AiOutlineYoutube className={styles.icon} size={30} />
+                                <div ref={socialIconTube}>
+                                    <a href="https://www.youtube.com/channel/UCRPvpSnoK7LggA4mnjwRVog" target="_blank">
+                                        <div className={`${styles.icoBorder} ${styles.icoBorderYouTube}`}>
+                                            <AiOutlineYoutube className={`${styles.icon} ${styles.iconYouTube}`} size={30} />
+                                        </div>
+                                    </a>
                                 </div>
                             </div>
                             <div></div>

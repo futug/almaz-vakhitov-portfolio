@@ -166,6 +166,8 @@ nav {
     margin-top: -4px;
     z-index: 1;
     position: relative;
+    width: 36px;
+    cursor: pointer;
 }
 .langInput {
     border: none;
@@ -179,6 +181,15 @@ nav {
     cursor: pointer;
     appearance: none;
     -webkit-appearance: none;
+    width: 100%;
+}
+
+.downArrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 0;
+    pointer-events: none;
 }
 
 .langInput > option {

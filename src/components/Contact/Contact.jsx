@@ -1,13 +1,14 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import styles from "./Contact.module.css";
-import { AiOutlineInstagram, AiOutlineMail, AiOutlinePhone, AiOutlineWhatsApp } from "react-icons/ai";
+import { AiOutlineInstagram, AiOutlineMail, AiOutlineClose } from "react-icons/ai";
 import { LiaTelegramPlane } from "react-icons/lia";
 import { useTranslation } from "react-i18next";
+import emailjs from "@emailjs/browser";
 
 const Contact = ({ timeline, ease }) => {
     let mainTitle = useRef();
     let mainSubtitle = useRef();
-    let form = useRef();
+    let formMain = useRef();
 
     useEffect(() => {
         timeline.from(mainTitle.current, 1, {
@@ -28,6 +29,91 @@ const Contact = ({ timeline, ease }) => {
         });
     }, []);
     const { t } = useTranslation();
+
+    const [email, setEmail] = useState("");
+    const [name, setName] = useState("");
+    const [dirtyEmail, setDirtyEmail] = useState(false);
+    const [dirtyName, setDirtyName] = useState(false);
+    const [emailError, setEmailError] = useState("Email can't be empty :(");
+    const [nameError, setNameError] = useState("Can i know your name?");
+    const [message, setMessage] = useState("");
+    const [formValid, setFormValid] = useState(false);
+    const [popUp, setPopUp] = useState(false);
+    const [isSent, setIsSent] = useState(false);
+    const form = useRef();
+    const irrelevantClick = useRef();
+
+    const popUpHandler = () => {
+        setPopUp(!popUp);
+    };
+
+    const outsideClickHandler = (e) => {
+        if (e.target.event === irrelevantClick.current) {
+            setPopUp(true);
+        } else {
+            setPopUp(false);
+        }
+    };
+
+    const sendEmail = (e) => {
+        e.preventDefault();
+
+        emailjs.sendForm("service_vq4ztwk", "template_q7yv80k", form.current, "qk3s_r4Tf0yePeXWF").then(
+            (result) => {
+                console.log(result.text);
+                setEmail("");
+                setName("");
+                setMessage("");
+                setPopUp(true);
+                setIsSent(true);
+            },
+            (error) => {
+                console.log(error.text);
+            }
+        );
+    };
+
+    const nameHandler = (e) => {
+        setName(e.target.value);
+        const re = /^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$/;
+        if (!re.test(String(e.target.value).toLowerCase())) {
+            setNameError("Numbers in the name? Your Majesty?");
+        } else {
+            setNameError("");
+        }
+        setDirtyName(false);
+    };
+
+    const emailHandler = (e) => {
+        setEmail(e.target.value);
+        const re = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
+        if (!re.test(String(e.target.value).toLowerCase())) {
+            setEmailError("Invalid adress, please check it");
+        } else if (e.target.value === "") {
+            setEmailError("Email can't be empty :(");
+        } else {
+            setEmailError("");
+        }
+        setDirtyEmail(false);
+    };
+    const blurHandler = (e) => {
+        switch (e.target.name) {
+            case "email":
+                setDirtyEmail(true);
+                break;
+            case "name":
+                setDirtyName(true);
+        }
+    };
+
+    useEffect(() => {
+        if (nameError || emailError) {
+            setFormValid(false);
+        } else {
+            setFormValid(true);
+        }
+    }, [emailError, nameError]);
+
     return (
         <section>
             <div className="container">
@@ -40,38 +126,54 @@ const Contact = ({ timeline, ease }) => {
                             {t("contactSubTitle")}
                         </p>
                     </div>
-                    <div ref={form} className={styles.contactForm}>
+                    <div ref={formMain} className={styles.contactForm}>
                         <div className={styles.contactInfo}>
                             <p className={styles.contactText}>{t("contactText")}</p>
                             <div className={styles.contactIcons}>
-                                <a href="#" target="_blank">
-                                    {" "}
+                                <a href="https://www.instagram.com/etozhemazei/" target="_blank">
                                     <AiOutlineInstagram className={styles.socialIco} size={25} />
                                 </a>
-                                <a href="#" target="_blank">
+                                <a href="mailto:vakhitov.almaz@gmail.com" target="_blank">
                                     <AiOutlineMail className={styles.socialIco} size={25} />
                                 </a>
-                                <a href="#" target="_blank">
+                                <a href="http://t.me/etozhemazei" target="_blank">
                                     <LiaTelegramPlane className={styles.socialIco} size={25} />
-                                </a>
-                                <a href="#" target="_blank">
-                                    <AiOutlineWhatsApp className={styles.socialIco} size={25} />
-                                </a>
-                                <a href="#" target="_blank">
-                                    {" "}
-                                    <AiOutlinePhone className={styles.socialIco} size={25} />
                                 </a>
                             </div>
                         </div>
-                        <form action="#" method="POST">
+                        <form ref={form} onSubmit={sendEmail}>
                             <div className={styles.inputField}>
-                                <input className={styles.input} type="text" placeholder={t("inputName")} name="name" id="name" required />
+                                {dirtyName && nameError && <div className="error">{nameError}</div>}
+                                <input
+                                    value={name}
+                                    onChange={nameHandler}
+                                    onBlur={blurHandler}
+                                    className={styles.input}
+                                    type="text"
+                                    placeholder={t("inputName")}
+                                    name="user_name"
+                                    id="name"
+                                    required
+                                />
                             </div>
                             <div className={styles.inputField}>
-                                <input className={styles.input} type="email" placeholder={t("inputEmail")} name="email" id="email" required />
+                                {dirtyEmail && emailError && <div className="error">{emailError}</div>}
+                                <input
+                                    value={email}
+                                    onChange={emailHandler}
+                                    onBlur={blurHandler}
+                                    className={styles.input}
+                                    type="email"
+                                    placeholder={t("inputEmail")}
+                                    name="user_email"
+                                    id="email"
+                                    required
+                                />
                             </div>
                             <div className={styles.inputField}>
                                 <textarea
+                                    value={message}
+                                    onChange={(e) => setMessage(e.target.value)}
                                     className={`${styles.input} ${styles.message}`}
                                     placeholder={t("inputMessage")}
                                     name="message"
@@ -79,11 +181,49 @@ const Contact = ({ timeline, ease }) => {
                                     required
                                 />
                             </div>
-                            <button className={styles.button} type="submit" onClick={(e) => e.preventDefault()}>
+                            <button disabled={!formValid} className={styles.button} type="submit">
                                 {t("button")}
                             </button>
                         </form>
                     </div>
+                </div>
+                <div onClick={outsideClickHandler} ref={irrelevantClick} className={`${styles.successSendingPopupWrapper} ${popUp ? styles.showWrapper : ""}`}>
+                    {isSent ? (
+                        <div className={`${styles.successSendingPopup} ${popUp ? styles.showPopup : ""}`}>
+                            <h2>Looks like you send me a message, pretty one!</h2>
+                            <p>I promisse to read and replay you as soon as possible!</p>
+                            <p>Let's stay in touch:</p>
+                            <div className={styles.contactIcons}>
+                                <a href="https://www.instagram.com/etozhemazei/" target="_blank">
+                                    <AiOutlineInstagram className={styles.socialIco} size={25} />
+                                </a>
+                                <a href="mailto:vakhitov.almaz@gmail.com" target="_blank">
+                                    <AiOutlineMail className={styles.socialIco} size={25} />
+                                </a>
+                                <a href="http://t.me/etozhemazei" target="_blank">
+                                    <LiaTelegramPlane className={styles.socialIco} size={25} />
+                                </a>
+                            </div>
+                            <AiOutlineClose onClick={popUpHandler} className={styles.close} />
+                        </div>
+                    ) : (
+                        <div className={`${styles.successSendingPopup} ${popUp ? styles.showPopup : ""}`}>
+                            <h2>Oooops! Looks like something went wrong!</h2>
+                            <p>I don't know what happened, but hope that i started to fix it! Try to catch me again with the direct addressing by:</p>
+                            <div className={styles.contactIcons}>
+                                <a href="https://www.instagram.com/etozhemazei/" target="_blank">
+                                    <AiOutlineInstagram className={styles.socialIco} size={25} />
+                                </a>
+                                <a href="mailto:vakhitov.almaz@gmail.com" target="_blank">
+                                    <AiOutlineMail className={styles.socialIco} size={25} />
+                                </a>
+                                <a href="http://t.me/etozhemazei" target="_blank">
+                                    <LiaTelegramPlane className={styles.socialIco} size={25} />
+                                </a>
+                            </div>
+                            <AiOutlineClose onClick={popUpHandler} className={styles.close} />
+                        </div>
+                    )}
                 </div>
             </div>
         </section>
