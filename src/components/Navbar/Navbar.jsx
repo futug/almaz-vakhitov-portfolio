@@ -119,8 +119,8 @@ const Navbar = ({ timeline, ease, lang, setLang }) => {
                         </nav>
                     </div>
 
-                    <div>
-                        <AiOutlineMenu onClick={handleMenuOpen} size={25} className={styles.hamburger} />
+                    <div className={styles.hamburger}>
+                        <AiOutlineMenu onClick={handleMenuOpen} size={25} />
                     </div>
                 </div>
             </div>

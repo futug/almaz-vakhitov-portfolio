@@ -118,6 +118,8 @@ nav {
     gap: 10px;
     filter: brightness(0.8);
     margin-top: -4px;
+    z-index: 1;
+    position: relative;
 }
 .langInput {
     border: none;
@@ -129,6 +131,12 @@ nav {
     outline: none;
     font-weight: 700;
     cursor: pointer;
+    appearance: none;
+    -webkit-appearance: none;
+}
+
+.langInput > option {
+    color: #101110;
 }
 
 @media (max-width: 768px) {
@@ -155,6 +163,7 @@ nav {
         gap: 10px;
         transform: translateY(-100%);
         transition: all 0.8s ease-in-out;
+        z-index: 999;
     }
 
     .menu {

@@ -12,6 +12,7 @@ import Feedback from "./components/Feedback/Feedback";
 import Contact from "./components/Contact/Contact";
 import { Footer } from "./components/Footer/Footer";
 import { PacmanLoader } from "react-spinners";
+import { SmoothWrapper } from "./components/SmoothWrapper/SmoothWrapper";
 
 function App() {
     const [isLoading, setIsLoading] = useState(true);
@@ -46,6 +47,7 @@ function App() {
             ) : (
                 <>
                     <Navbar timeline={tl} ease={ease} changeLanguage={changeLanguage} lang={lang} setLang={setLang} />
+
                     <main>
                         <Hero timeline={tl} ease={ease} t={t} lang={lang} />
                         <About timeline={tl} ease={ease} />
@@ -53,6 +55,7 @@ function App() {
                         <Feedback timeline={tl} ease={ease} />
                         <Contact timeline={tl} ease={ease} />
                     </main>
+
                     <Footer />
                 </>
             )}
