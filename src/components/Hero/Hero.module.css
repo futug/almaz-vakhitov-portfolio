@@ -100,21 +100,30 @@
 }
 
 .video {
-    height: 80%;
+    height: auto;
     transition: all 0.6 ease-in-out;
     width: 80%;
+    aspect-ratio: 16/9;
+    object-fit: cover;
 }
 
 .videoLayoutActive {
     opacity: 1;
 }
 
-.video {
-    width: 80%;
-}
-
 .videoClose {
     position: fixed;
     top: 20px;
     right: 20px;
+}
+
+@media (max-width: 768px) {
+    .heroWrapper {
+        grid-template-columns: 1fr;
+        padding-bottom: 60px;
+    }
+
+    .heroLeft {
+        display: none;
+    }
 }

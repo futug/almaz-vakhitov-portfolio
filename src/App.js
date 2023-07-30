@@ -16,7 +16,6 @@ import { SmoothWrapper } from "./components/SmoothWrapper/SmoothWrapper";
 
 function App() {
     const [isLoading, setIsLoading] = useState(true);
-    const [lang, setLang] = useState("ru");
 
     const tl = new gsap.timeline();
     const ease = Power3.easeOut;
@@ -29,12 +28,15 @@ function App() {
     }, []);
 
     const { t, i18n } = useTranslation();
+    const [lang, setLang] = useState(i18n.language);
 
     const changeLanguage = (lng) => {
         i18n.changeLanguage(lng);
     };
 
-    console.log(lang);
+    const currentLanguage = i18n.language;
+
+    console.log(currentLanguage);
     return (
         <div className="App">
             {isLoading ? (

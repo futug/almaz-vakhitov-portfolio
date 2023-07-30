@@ -6,8 +6,14 @@ import { changeLanguage } from "i18next";
 import { useTranslation } from "react-i18next";
 
 import { BiSolidDownArrow } from "react-icons/bi";
-
+import { BsFiletypePdf } from "react-icons/bs";
 const Navbar = ({ timeline, ease, lang, setLang }) => {
+    const [cvIsOpen, setCvIsOpen] = useState(false);
+
+    const handleCvOpen = () => {
+        setCvIsOpen(true);
+    };
+
     const navLinks = [
         {
             id: 0,
@@ -95,9 +101,21 @@ const Navbar = ({ timeline, ease, lang, setLang }) => {
                     <div className={styles.menu}>
                         <div className={styles.downloadCV}>
                             <p className={styles.downloadLabel}>{t("downloadCV")}</p>
-                            <a href="./VakhitovCV.pdf" target="_blank" className={styles.download}>
-                                <AiOutlineDownload size={25} />
-                            </a>
+                            <AiOutlineDownload size={25} className={styles.download} />
+                            <div className={styles.cvPopup}>
+                                <div className={styles.cvPopupInnerRow}>
+                                    <a href="./Vakhitov-CV-ru.pdf" download={true} className={styles.cvPopupLink}>
+                                        <BsFiletypePdf className={styles.cvPopupIcon} size={25} />
+                                        Ru-CV PDF-format
+                                    </a>
+                                </div>
+                                <div className={styles.cvPopupInnerRow}>
+                                    <a href="./Vakhitov-CV-eng.pdf" download={true} className={styles.cvPopupLink}>
+                                        <BsFiletypePdf className={styles.cvPopupIcon} size={25} />
+                                        Eng-CV PDF-format
+                                    </a>
+                                </div>
+                            </div>
                         </div>
                         <nav>
                             <ul className={isOpen ? `${styles.navbarlist} ${styles.navbarlistActive}` : styles.navbarlist}>

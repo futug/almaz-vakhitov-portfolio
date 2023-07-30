@@ -14,15 +14,34 @@ const Hero = ({ timeline, lang }) => {
         setPreviewUrl(src);
     };
 
+    const handleScroll = () => {
+        if (videoIsOpen === true) {
+            document.querySelector("body").style.overflow = "hidden";
+        } else {
+            document.querySelector("body").style.overflow = "auto";
+        }
+    };
+
+    useEffect(() => {
+        handleScroll(); // Call the function initially
+        // Add the scroll event listener when the component mounts
+        window.addEventListener("scroll", handleScroll);
+
+        // Remove the scroll event listener when the component unmounts
+        return () => {
+            window.removeEventListener("scroll", handleScroll);
+        };
+    }, [videoIsOpen]);
+
     const heroVidePreviewsLeft = [
         {
             id: 0,
-            srcJpeg: "./image1.jpeg",
-            srcWebp: "./image1.webp",
-            title: "Crypto God",
-            titleRu: "Крипто Бог",
-            titleTr: "Kripto Tanrısı",
-            src: "https://www.youtube.com/embed/5ocRDkT8new",
+            srcJpeg: "./image6.jpeg",
+            srcWebp: "./image6.webp",
+            title: "New Balance - 530",
+            titleRu: "New Balance - 530",
+            titleTr: "New Balance - 530",
+            src: "https://www.youtube.com/embed/5ocRDkT8new5",
         },
         {
             id: 1,
@@ -64,13 +83,13 @@ const Hero = ({ timeline, lang }) => {
             src: "https://www.youtube.com/embed/5ocRDkT8new4",
         },
         {
-            id: 2,
-            srcJpeg: "./image6.jpeg",
-            srcWebp: "./image6.webp",
-            title: "New Balance - 530",
-            titleRu: "New Balance - 530",
-            titleTr: "New Balance - 530",
-            src: "https://www.youtube.com/embed/5ocRDkT8new5",
+            id: 3,
+            srcJpeg: "./image1.jpeg",
+            srcWebp: "./image1.webp",
+            title: "Crypto God",
+            titleRu: "Крипто Бог",
+            titleTr: "Kripto Tanrısı",
+            src: "https://www.youtube.com/embed/5ocRDkT8new",
         },
     ];
 

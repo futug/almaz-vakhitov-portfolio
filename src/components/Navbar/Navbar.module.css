@@ -34,7 +34,6 @@ nav {
 }
 .download {
     color: #fefffe;
-    /* text-shadow: 1px 1px 2px red, 0 0 1em blue, 0 0 0.2em blue; */
 }
 .logo:hover {
     filter: brightness(0.4);
@@ -96,8 +95,55 @@ nav {
     align-items: center;
     gap: 20px;
     filter: brightness(0.8);
-    overflow: hidden;
+    /* overflow: hidden; */
     cursor: pointer;
+    margin-top: -5px;
+    position: relative;
+}
+
+.cvPopup {
+    position: absolute;
+    top: 100%;
+    width: 300px;
+    height: 0;
+    background-color: #101110;
+    left: -50%;
+    display: flex;
+    flex-direction: column;
+    background-color: #303531;
+    overflow: hidden;
+    transition: all 0.3s ease-in-out;
+}
+
+.downloadCV:hover .cvPopup {
+    height: 130px;
+}
+
+.cvPopupInnerRow {
+    width: 100%;
+    display: grid;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    transition: all 0.3s ease-in-out;
+}
+
+.cvPopupIcon {
+    justify-self: last baseline;
+    margin-right: 20px;
+}
+.cvPopupIcon * {
+    fill: tomato;
+}
+.cvPopupLink {
+    color: #fefffe;
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+.cvPopupInnerRow:hover {
+    background-color: #101110;
 }
 
 .downloadLabel {
@@ -140,6 +186,13 @@ nav {
 }
 
 @media (max-width: 768px) {
+    .cvPopup {
+        position: fixed;
+        top: 130%;
+
+        transform: translateX(-49%);
+    }
+
     nav {
         gap: 20px;
     }

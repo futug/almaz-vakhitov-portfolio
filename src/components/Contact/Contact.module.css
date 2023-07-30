@@ -140,7 +140,6 @@
 
 @media (max-width: 375px) {
     .title::after {
-        width: 30%;
-        right: -40%;
+        display: none;
     }
 }

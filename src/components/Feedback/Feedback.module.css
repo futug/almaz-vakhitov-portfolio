@@ -119,3 +119,9 @@
         right: -60%;
     }
 }
+
+@media (max-width: 375px) {
+    .title::after {
+        display: none;
+    }
+}
