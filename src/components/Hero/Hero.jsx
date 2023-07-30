@@ -1,4 +1,5 @@
 import React, { useRef, useEffect, useState } from "react";
+import useLockScroll from "../../utils/hooks/useLockScroll";
 
 import styles from "./Hero.module.css";
 import { useTranslation } from "react-i18next";
@@ -14,23 +15,7 @@ const Hero = ({ timeline, lang }) => {
         setPreviewUrl(src);
     };
 
-    const handleScroll = () => {
-        if (videoIsOpen === true) {
-            document.querySelector("body").style.overflow = "hidden";
-        } else {
-            document.querySelector("body").style.overflow = "auto";
-        }
-    };
-
-    useEffect(() => {
-        handleScroll();
-        window.addEventListener("scroll", handleScroll);
-
-        return () => {
-            window.removeEventListener("scroll", handleScroll);
-        };
-    }, [videoIsOpen]);
-
+    useLockScroll(videoIsOpen);
     const heroVidePreviewsLeft = [
         {
             id: 0,

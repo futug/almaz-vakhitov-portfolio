@@ -1,19 +1,13 @@
 import React, { useRef, useEffect, useState } from "react";
 import styles from "./Navbar.module.css";
 import { AiOutlineClose, AiOutlineDownload, AiOutlineMenu } from "react-icons/ai";
-import i18next, { t } from "i18next";
 import { changeLanguage } from "i18next";
 import { useTranslation } from "react-i18next";
+import useLockScroll from "../../utils/hooks/useLockScroll";
 
 import { BiSolidDownArrow } from "react-icons/bi";
 import { BsFiletypePdf } from "react-icons/bs";
 const Navbar = ({ timeline, ease, lang, setLang }) => {
-    const [cvIsOpen, setCvIsOpen] = useState(false);
-
-    const handleCvOpen = () => {
-        setCvIsOpen(true);
-    };
-
     const navLinks = [
         {
             id: 0,
@@ -46,6 +40,8 @@ const Navbar = ({ timeline, ease, lang, setLang }) => {
     ];
     const { t } = useTranslation();
     const [isOpen, setIsOpen] = useState(false);
+
+    useLockScroll(isOpen);
     const [scrollDown, setScrollDown] = useState(false);
     const handleMenuOpen = () => {
         setIsOpen(!isOpen);

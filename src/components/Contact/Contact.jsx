@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
+import useLockScroll from "../../utils/hooks/useLockScroll";
 import styles from "./Contact.module.css";
 import { AiOutlineInstagram, AiOutlineMail, AiOutlineClose } from "react-icons/ai";
 import { LiaTelegramPlane } from "react-icons/lia";
@@ -43,22 +44,7 @@ const Contact = ({ timeline, ease }) => {
     const form = useRef();
     const irrelevantClick = useRef();
 
-    const handleScroll = () => {
-        if (popUp === true) {
-            document.querySelector("body").style.overflow = "hidden";
-        } else {
-            document.querySelector("body").style.overflow = "auto";
-        }
-    };
-
-    useEffect(() => {
-        handleScroll();
-        window.addEventListener("scroll", handleScroll);
-
-        return () => {
-            window.removeEventListener("scroll", handleScroll);
-        };
-    }, [popUp]);
+    useLockScroll(popUp);
     const popUpHandler = () => {
         setPopUp(!popUp);
     };
