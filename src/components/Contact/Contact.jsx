@@ -43,6 +43,22 @@ const Contact = ({ timeline, ease }) => {
     const form = useRef();
     const irrelevantClick = useRef();
 
+    const handleScroll = () => {
+        if (popUp === true) {
+            document.querySelector("body").style.overflow = "hidden";
+        } else {
+            document.querySelector("body").style.overflow = "auto";
+        }
+    };
+
+    useEffect(() => {
+        handleScroll();
+        window.addEventListener("scroll", handleScroll);
+
+        return () => {
+            window.removeEventListener("scroll", handleScroll);
+        };
+    }, [popUp]);
     const popUpHandler = () => {
         setPopUp(!popUp);
     };

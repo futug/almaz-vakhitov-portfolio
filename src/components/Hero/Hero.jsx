@@ -23,11 +23,9 @@ const Hero = ({ timeline, lang }) => {
     };
 
     useEffect(() => {
-        handleScroll(); // Call the function initially
-        // Add the scroll event listener when the component mounts
+        handleScroll();
         window.addEventListener("scroll", handleScroll);
 
-        // Remove the scroll event listener when the component unmounts
         return () => {
             window.removeEventListener("scroll", handleScroll);
         };
