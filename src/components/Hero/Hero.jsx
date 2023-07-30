@@ -35,8 +35,6 @@ const Hero = ({ timeline, lang }) => {
             x: 100,
         });
     }, []);
-    console.log(previewUrl);
-    console.log(videoIsOpen);
 
     return (
         <section>
@@ -91,12 +89,20 @@ const Hero = ({ timeline, lang }) => {
                     </div>
                 </div>
             </div>
-            {videoIsOpen ? (
-                <div className={styles.videoLayout}>
-                    <iframe className={styles.video} src={previewUrl} title="YouTube video player" frameborder="0" allowfullscreen allow="autoplay"></iframe>
-                    <AiOutlineClose onClick={() => setVideoIsOpen(false)} size={30} className={styles.videoClose} />
-                </div>
-            ) : null}
+
+            <div className={videoIsOpen ? `${styles.videoLayout} ${styles.videoLayoutShow}` : styles.videoLayout}>
+                {videoIsOpen ? (
+                    <iframe
+                        className={videoIsOpen ? `${styles.video} ${styles.videoShow}` : styles.video}
+                        src={previewUrl}
+                        title="YouTube video player"
+                        frameborder="0"
+                        allowfullscreen
+                        allow="autoplay"
+                    ></iframe>
+                ) : null}
+                <AiOutlineClose onClick={() => setVideoIsOpen(false)} size={30} className={styles.videoClose} />
+            </div>
         </section>
     );
 };

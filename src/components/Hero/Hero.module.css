@@ -31,8 +31,8 @@
     gap: 20px;
 }
 .imageWrapper {
-    width: 630px;
-    height: 354px;
+    max-width: 630px;
+    max-height: 354px;
     overflow: hidden;
     position: relative;
     cursor: pointer;
@@ -108,19 +108,24 @@
     justify-content: center;
     align-items: center;
     transition: all 0.3s ease-in-out;
-    opacity: 1;
+    opacity: 0;
+    pointer-events: none;
 }
 
 .video {
     height: auto;
     transition: all 0.6 ease-in-out;
-    width: 80%;
+    width: 0;
     aspect-ratio: 16/9;
     object-fit: cover;
 }
 
-.videoLayoutActive {
+.videoLayoutShow {
     opacity: 1;
+}
+
+.videoShow {
+    width: 80%;
 }
 
 .videoClose {
@@ -128,6 +133,7 @@
     top: 20px;
     right: 20px;
     cursor: pointer;
+    pointer-events: all;
 }
 
 @media (max-width: 768px) {
