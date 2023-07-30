@@ -15,4 +15,4 @@ I didn't have any design when decided to create this app, so i went to behance a
 
 ## You can see the progress here:
 
-### almaz-vakhitov-portfolio.vercel.app
+### https://almaz-vakhitov-portfolio.vercel.app
