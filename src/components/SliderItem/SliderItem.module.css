@@ -1,0 +1,64 @@
+.itemWrapper {
+    max-width: 80%;
+    margin: 0 auto;
+    padding: 50px;
+    position: relative;
+    display: flex;
+}
+
+.item {
+    width: 100%;
+}
+
+.itemBody {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+}
+
+.quotes {
+    width: 100px;
+    opacity: 0.6;
+}
+
+.quotes * {
+    fill: #fefffe;
+}
+
+.itemFooter {
+    width: 100%;
+}
+
+.itemAuthor {
+    width: fit-content;
+    margin: 20px 0 0 auto;
+    font-size: 14px;
+    position: relative;
+}
+
+@media (max-width: 768px) {
+    .itemWrapper {
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 575px) {
+    .itemWrapper {
+        padding: 20px 0 0 0;
+    }
+
+    .itemBody {
+        font-size: 14px;
+    }
+
+    .itemAuthor {
+        font-size: 12px;
+        max-width: 150px;
+    }
+}
+
+@media (max-width: 425px) {
+    .itemImage {
+        display: none;
+    }
+}

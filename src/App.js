@@ -49,7 +49,7 @@ function App() {
                         <Hero timeline={tl} ease={ease} t={t} lang={lang} />
                         <About timeline={tl} ease={ease} />
                         <Skills timeline={tl} ease={ease} />
-                        <Feedback timeline={tl} ease={ease} />
+                        <Feedback timeline={tl} ease={ease} lang={lang} />
                         <Contact timeline={tl} ease={ease} />
                     </main>
 
