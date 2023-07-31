@@ -40,7 +40,7 @@ export const VIDEO_PREVIEWS_LEFT = [
         title: "Annoyed Triangle",
         titleRu: "Недовольный треугольник",
         titleTr: "Rahatsız Üçgen",
-        src: `https://www.youtube.com/embed/wk6amUOSkNM?autoplay=1`,
+        src: `${BASE_YOUTUBE_URL}wk6amUOSkNM${YOUTUBE_AUTOPLAY_QUERRY}`,
     },
     {
         id: 1,
@@ -49,7 +49,7 @@ export const VIDEO_PREVIEWS_LEFT = [
         title: 'Concept" Sneakers Shop',
         titleRu: 'Магазин "Концепт"',
         titleTr: "Spor Ayakkabı Mağazası",
-        src: "https://www.youtube.com/embed/bfq3ugWe-zY?autoplay=1",
+        src: `${BASE_YOUTUBE_URL}bfq3ugWe-zY${YOUTUBE_AUTOPLAY_QUERRY}`,
     },
     {
         id: 2,
@@ -58,7 +58,7 @@ export const VIDEO_PREVIEWS_LEFT = [
         title: "New Balance 530 - Review",
         titleRu: "New Balance 530 - Обзор",
         titleTr: "SNew Balance 530 - Yorum",
-        src: "https://www.youtube.com/embed/ZxbpsCjkY5c?autoplay=1",
+        src: `${BASE_YOUTUBE_URL}ZxbpsCjkY5c${YOUTUBE_AUTOPLAY_QUERRY}`,
     },
 ];
 
@@ -70,7 +70,7 @@ export const VIDEO_PREVIEWS_RIGHT = [
         title: "Most Expensive Jordans",
         titleRu: "Самые дорогие Джорданы",
         titleTr: "En Pahalı Jordanlar",
-        src: "https://www.youtube.com/embed/yIfV3aLJEnw?autoplay=1",
+        src: `${BASE_YOUTUBE_URL}yIfV3aLJEnw${YOUTUBE_AUTOPLAY_QUERRY}`,
     },
     {
         id: 1,
@@ -79,7 +79,7 @@ export const VIDEO_PREVIEWS_RIGHT = [
         title: "Annoyed Triangle",
         titleRu: "Недовольный треугольник",
         titleTr: "Rahatsız Üçgen",
-        src: "https://www.youtube.com/embed/WGhS6-fDSB0?autoplay=1",
+        src: `${BASE_YOUTUBE_URL}WGhS6-fDSB0${YOUTUBE_AUTOPLAY_QUERRY}`,
     },
     {
         id: 3,
@@ -88,6 +88,6 @@ export const VIDEO_PREVIEWS_RIGHT = [
         title: 'Concept" Sneakers Shop',
         titleRu: 'Магазин "Концепт"',
         titleTr: "Spor Ayakkabı Mağazası",
-        src: "https://www.youtube.com/embed/zfcG9sTkUCc?autoplay=1",
+        src: `${BASE_YOUTUBE_URL}zfcG9sTkUCc${YOUTUBE_AUTOPLAY_QUERRY}`,
     },
 ];

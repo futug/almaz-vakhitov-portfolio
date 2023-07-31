@@ -8,6 +8,7 @@ nav {
     display: flex;
     gap: 40px;
     align-items: center;
+    position: relative;
 }
 .menu {
     display: flex;
@@ -21,8 +22,15 @@ nav {
     align-items: center;
     padding: 20px 0;
     transition: all 0.3s ease-in-out;
+    position: relative;
+}
+.logoGroup {
+    transition: all 0.6s ease-in-out;
 }
 
+.logoGroup:hover {
+    filter: brightness(0.4);
+}
 .logo {
     font-weight: 700;
     font-size: 21px;
@@ -35,9 +43,6 @@ nav {
 .download {
     color: #fefffe;
 }
-.logo:hover {
-    filter: brightness(0.4);
-}
 
 .logo > span {
     color: #ff3297;
@@ -48,6 +53,14 @@ nav {
     color: #fefffe;
     display: flex;
     gap: 40px;
+}
+
+.linkItemContainer {
+    transition: all 0.6s ease-in-out;
+}
+
+.linkItemContainer:hover {
+    filter: brightness(0.6);
 }
 
 .listItem {
@@ -63,9 +76,6 @@ nav {
     cursor: pointer;
 }
 
-.listItem:hover {
-    filter: brightness(0.6);
-}
 .listItem:hover::after {
     transform: scale(1);
 }
@@ -88,6 +98,10 @@ nav {
 .hamburger {
     cursor: pointer;
     display: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
 }
 
 .closeItem {
@@ -108,10 +122,11 @@ nav {
 .cvPopup {
     position: absolute;
     top: 100%;
-    width: 300px;
-    height: 0;
-    background-color: #101110;
-    left: -50%;
+    left: 50%;
+    transform: translateX(-50%) scale(0);
+    transform-origin: top center;
+    max-width: 300px;
+    height: fit-content;
     display: flex;
     flex-direction: column;
     background-color: #303531;
@@ -119,8 +134,8 @@ nav {
     transition: all 0.3s ease-in-out;
 }
 
-.downloadCV:hover .cvPopup {
-    height: 130px;
+.cvPopupShow {
+    transform: translateX(-50%) scale(1);
 }
 
 .cvPopupInnerRow {
@@ -167,7 +182,7 @@ nav {
     align-items: center;
     gap: 10px;
     filter: brightness(0.8);
-    margin-top: -4px;
+
     z-index: 1;
     position: relative;
     width: 36px;
@@ -200,14 +215,16 @@ nav {
     color: #101110;
 }
 
-@media (max-width: 768px) {
-    .cvPopup {
-        position: fixed;
-        top: 130%;
-
-        transform: translateX(-49%);
+@media (max-width: 1024px) {
+    .logo > span {
+        display: none;
     }
+    .cvPopup {
+        left: 35%;
+    }
+}
 
+@media (max-width: 768px) {
     nav {
         gap: 20px;
     }
@@ -245,9 +262,18 @@ nav {
     .listItem {
         font-size: 24px;
     }
+
+    .cvPopup {
+        left: 100%;
+        transform: translateX(-100%) scale(0);
+        width: 100%;
+    }
+
+    .cvPopupShow {
+        transform: translateX(-100%) scale(1);
+    }
     .hamburger {
-        display: block;
-        margin-top: -3px;
+        display: flex;
     }
 
     .closeItem {
