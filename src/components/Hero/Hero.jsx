@@ -101,7 +101,7 @@ const Hero = ({ timeline, lang }) => {
                         allow="autoplay"
                     ></iframe>
                 ) : null}
-                <AiOutlineClose onClick={() => setVideoIsOpen(false)} size={30} className={styles.videoClose} />
+                {videoIsOpen ? <AiOutlineClose onClick={() => setVideoIsOpen(false)} size={30} className={styles.videoClose} /> : null}
             </div>
         </section>
     );

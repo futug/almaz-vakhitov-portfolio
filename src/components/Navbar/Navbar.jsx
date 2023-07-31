@@ -81,45 +81,65 @@ const Navbar = ({ timeline, ease, lang, setLang, scrollIntoView }) => {
         <header className={styles.header} style={scrollDown ? { backgroundColor: "#101110" } : {}}>
             <div className="container">
                 <div className={styles.navbar} style={scrollDown ? { padding: "10px 0" } : {}}>
+                    {/* LOGO_GROUP_STARTS */}
                     <div className={styles.logoGroup}>
-                        <Link to="hero" spy={true} smooth={true} offset={-50} duration={1000} onid="hero" className={styles.link}>
+                        <Link to="hero" spy={true} smooth={true} offset={-50} duration={1000} onid="hero">
                             <p ref={logoRef} className={styles.logo}>
                                 almaz vakhitov{" "}
                                 <TypeAnimation sequence={["videomaker", 5000, "motiondesigner", 5000, "videoeditor", 5000]} speed={10} repeat={Infinity} />
                             </p>
                         </Link>
                     </div>
+                    {/* LOGO_GROUP_ENDS */}
+
+                    {/* MENU_BLOCK_STARTS */}
                     <div className={styles.menu}>
                         <div ref={cvUntarget} onClick={(e) => setCvIsOpen(!cvIsOpen)} className={styles.downloadCV}>
                             <p className={styles.downloadLabel}>{t("downloadCV")}</p>
                             <AiOutlineDownload size={25} className={styles.download} />
                         </div>
-                        <nav>
+                        <nav className={styles.navbarBlock}>
                             <ul className={isOpen ? `${styles.navbarlist} ${styles.navbarlistActive}` : styles.navbarlist}>
                                 {navLinks.map((link, index) => (
                                     <div key={link.id} className={styles.linkItemContainer}>
                                         <li ref={(el) => (listItemsRefs.current[index] = el)} className={styles.listItem}>
-                                            <Link to={link.name} spy={true} smooth={true} offset={-50} duration={500} onid={link.name} className={styles.link}>
+                                            <Link
+                                                onClick={handleMenuOpen}
+                                                to={link.name}
+                                                spy={true}
+                                                smooth={true}
+                                                offset={-50}
+                                                duration={500}
+                                                onid={link.name}
+                                                className={styles.link}
+                                            >
                                                 {lang === "en" ? link.name : lang === "ru" ? link.nameRu : link.nameTr}
                                             </Link>
                                         </li>
                                     </div>
                                 ))}
-                                <AiOutlineClose onClick={handleMenuOpen} size={25} className={styles.closeItem} />
+                                <div className={styles.closeItem}>
+                                    <AiOutlineClose onClick={handleMenuOpen} size={25} />
+                                </div>
                             </ul>
                             <div className={styles.langChoice}>
-                                <select className={styles.langInput} value={lang} onChange={handleLang} name="language" id="">
+                                <select className={styles.langInput} value={lang} onChange={handleLang}>
                                     <option value="ru">ru</option>
                                     <option value="en">en</option>
                                     <option value="tr">tr</option>
                                 </select>
-                                <BiSolidDownArrow size={10} className={styles.downArrow} />
+                                <div className={styles.downArrow}>
+                                    <BiSolidDownArrow size={10} className={styles.downArrow} />
+                                </div>
                             </div>
                             <div className={styles.hamburger} onClick={handleMenuOpen}>
                                 <AiOutlineMenu size={25} />
                             </div>
                         </nav>
                     </div>
+                    {/* MENU_BLOCK_ENDS */}
+
+                    {/* CV_POPUP_STARTS */}
                     <div ref={cvRef} onClick={(e) => setCvIsOpen(!cvIsOpen)} className={cvIsOpen ? `${styles.cvPopup} ${styles.cvPopupShow}` : styles.cvPopup}>
                         <div className={styles.cvPopupInnerRow}>
                             <a href="./RusCV.pdf" download={true} className={styles.cvPopupLink}>
@@ -134,6 +154,7 @@ const Navbar = ({ timeline, ease, lang, setLang, scrollIntoView }) => {
                             </a>
                         </div>
                     </div>
+                    {/* CV_POPUP_ENDS */}
                 </div>
             </div>
         </header>

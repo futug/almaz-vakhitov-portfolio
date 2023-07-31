@@ -4,17 +4,6 @@
     z-index: 999;
     transition: all 0.3s ease-in-out;
 }
-nav {
-    display: flex;
-    gap: 40px;
-    align-items: center;
-    position: relative;
-}
-.menu {
-    display: flex;
-    align-items: center;
-    gap: 40px;
-}
 
 .navbar {
     display: flex;
@@ -22,15 +11,17 @@ nav {
     align-items: center;
     padding: 20px 0;
     transition: all 0.3s ease-in-out;
-    position: relative;
-}
-.logoGroup {
-    transition: all 0.6s ease-in-out;
 }
 
+/* LOGO_GROUP_STARTS */
+.logoGroup {
+    transition: all 0.6s ease-in-out;
+    cursor: pointer;
+}
 .logoGroup:hover {
     filter: brightness(0.4);
 }
+
 .logo {
     font-weight: 700;
     font-size: 21px;
@@ -40,85 +31,48 @@ nav {
     position: relative;
     text-shadow: 1px 1px 2px red, 0 0 1em blue, 0 0 0.2em blue;
 }
-.download {
-    color: #fefffe;
-}
 
 .logo > span {
     color: #ff3297;
-    text-shadow: none;
 }
-.navbarlist {
-    list-style: none;
-    color: #fefffe;
+
+/* LOGO_GROUP_ENDS */
+
+/* MENU_BLOCK_STARTS */
+
+.menu {
     display: flex;
+    align-items: center;
     gap: 40px;
 }
 
-.linkItemContainer {
-    transition: all 0.6s ease-in-out;
-}
-
-.linkItemContainer:hover {
-    filter: brightness(0.6);
-}
-
-.listItem {
-    color: #fefffe;
-    text-transform: uppercase;
-    font-size: 16px;
-    font-weight: 700;
-    filter: brightness(0.8);
-    letter-spacing: 1px;
-}
-
-.link {
-    cursor: pointer;
-}
-
-.listItem:hover::after {
-    transform: scale(1);
-}
-.listItem::after {
-    content: "";
-    width: 100%;
-    height: 4px;
-    transform: scale(0);
-    transform-origin: right;
-    background-color: #ff3297;
-    display: block;
-    transition: all 0.3s ease-in-out;
-}
-
-.listItem > a {
-    color: inherit;
-    text-shadow: 1px 1px 2px red, 0 0 1em blue, 0 0 0.2em blue;
-}
-
-.hamburger {
-    cursor: pointer;
-    display: none;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-}
-
-.closeItem {
-    display: none;
-}
+/* MENU_BLOCK-downLoadCV_STARTS */
 
 .downloadCV {
+    color: #fefffe;
     display: flex;
+    gap: 10px;
     align-items: center;
-    gap: 20px;
     filter: brightness(0.8);
-    /* overflow: hidden; */
+    overflow: hidden;
     cursor: pointer;
-    margin-top: -5px;
-    position: relative;
 }
 
+.downloadLabel {
+    opacity: 0;
+    transform-origin: right;
+    transform: translateX(100%);
+    transition: all 0.4s ease-in-out;
+}
+
+.downloadCV:hover .downloadLabel {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* MENU_BLOCK-downLoadCV_ENDS */
+
+/* MENU_BLOCK-downLoadCV-cvPopup_STARTS */
 .cvPopup {
     position: absolute;
     top: 100%;
@@ -165,29 +119,80 @@ nav {
     background-color: #101110;
 }
 
-.downloadLabel {
-    opacity: 0;
-    transform-origin: right;
-    transform: translateX(100%);
-    transition: all 0.4s ease-in-out;
+/* MENU_BLOCK-downLoadCV-cvPopup_ENDS */
+
+/* MENU_BLOCK-navbarBlock_STARTS */
+
+.navbarBlock {
+    display: flex;
+    align-items: center;
+    /* justify-content: space-between; */
+    gap: 40px;
+    height: 100%;
 }
 
-.downloadCV:hover .downloadLabel {
-    opacity: 1;
-    transform: translateX(0);
+.navbarlist {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    list-style: none;
+}
+
+.linkItemContainer {
+    transition: all 0.6s ease-in-out;
+}
+
+.linkItemContainer:hover {
+    filter: brightness(0.6);
+}
+
+.link {
+    color: #fefffe;
+    text-transform: uppercase;
+    font-size: 16px;
+    font-weight: 700;
+    filter: brightness(0.8);
+    letter-spacing: 1px;
+    cursor: pointer;
+    text-shadow: 1px 1px 2px red, 0 0 1em blue, 0 0 0.2em blue;
+    position: relative;
+}
+
+.link::after {
+    position: absolute;
+    content: "";
+    width: 100%;
+    height: 4px;
+    transform: scale(0);
+    transform-origin: right;
+    background-color: #ff3297;
+    display: block;
+    transition: all 0.3s ease-in-out;
+}
+
+.link:hover::after {
+    transform: scale(1);
+}
+
+.closeItem {
+    display: none;
+    position: fixed;
+    top: 20px;
+    right: 25px;
 }
 
 .langChoice {
     display: flex;
     align-items: center;
+    justify-content: space-between;
     gap: 10px;
     filter: brightness(0.8);
-
     z-index: 1;
     position: relative;
     width: 36px;
     cursor: pointer;
 }
+
 .langInput {
     border: none;
     padding: 0;
@@ -200,69 +205,36 @@ nav {
     cursor: pointer;
     appearance: none;
     -webkit-appearance: none;
-    width: 100%;
-}
-
-.downArrow {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    right: 0;
-    pointer-events: none;
+    padding-right: 15px;
 }
 
 .langInput > option {
     color: #101110;
 }
 
+.downArrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-52%);
+    right: 0;
+    pointer-events: none;
+}
+
+.hamburger {
+    display: none;
+    align-items: center;
+    cursor: pointer;
+}
+
+/* MENU_BLOCK-navbarBlock_ENDS */
+
 @media (max-width: 1024px) {
     .logo > span {
         display: none;
     }
-    .cvPopup {
-        left: 35%;
-    }
 }
 
 @media (max-width: 768px) {
-    nav {
-        gap: 20px;
-    }
-    .downloadLabel {
-        display: none;
-    }
-    .navbar {
-        gap: 20px;
-    }
-    .navbarlist {
-        display: flex;
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: #101110;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        gap: 10px;
-        transform: translateY(-100%);
-        transition: all 0.8s ease-in-out;
-        z-index: 999;
-    }
-
-    .menu {
-        gap: 20px;
-        height: fit-content;
-    }
-    .navbarlistActive {
-        transform: translateY(0);
-    }
-
-    .listItem {
-        font-size: 24px;
-    }
-
     .cvPopup {
         left: 100%;
         transform: translateX(-100%) scale(0);
@@ -272,24 +244,64 @@ nav {
     .cvPopupShow {
         transform: translateX(-100%) scale(1);
     }
-    .hamburger {
-        display: flex;
+
+    .closeItem {
+        width: fit-content;
+    }
+
+    .navbarBlock {
+        gap: 15px;
+    }
+
+    .menu {
+        gap: 15px;
+    }
+
+    .downloadLabel {
+        display: none;
+    }
+    .navbarlist {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background: url("../../assets/background-asset.svg") no-repeat left bottom/cover, #101110;
+        z-index: 999;
+        transform: translateY(-100%);
+        transition: all 0.6s ease-in-out;
+    }
+
+    .navbarlistActive {
+        transform: translateY(0);
     }
 
     .closeItem {
         display: block;
-        position: fixed;
-        top: 20px;
-        right: 20px;
+    }
+
+    .hamburger {
+        display: flex;
+        pointer-events: all;
+        width: 100%;
+        height: 100%;
     }
 }
 
 @media (max-width: 575px) {
-    .logo > span {
-        display: none;
-    }
-
     .logo {
         font-size: 18px;
+    }
+
+    .cvPopup {
+        left: 50%;
+        transform: translateX(-50%) scale(0);
+    }
+
+    .cvPopupShow {
+        transform: translateX(-50%) scale(1);
     }
 }
