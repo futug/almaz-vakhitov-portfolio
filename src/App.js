@@ -47,10 +47,10 @@ function App() {
 
                     <main>
                         <Hero timeline={tl} ease={ease} t={t} lang={lang} />
-                        <About timeline={tl} ease={ease} />
-                        <Skills timeline={tl} ease={ease} />
+                        <About timeline={tl} ease={ease} lang={lang} />
+                        <Skills timeline={tl} ease={ease} lang={lang} />
                         <Feedback timeline={tl} ease={ease} lang={lang} />
-                        <Contact timeline={tl} ease={ease} />
+                        <Contact timeline={tl} ease={ease} lang={lang} />
                     </main>
 
                     <Footer />

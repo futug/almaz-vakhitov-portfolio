@@ -5,6 +5,7 @@ import { AiOutlineInstagram, AiOutlineMail, AiOutlineClose } from "react-icons/a
 import { LiaTelegramPlane } from "react-icons/lia";
 import { useTranslation } from "react-i18next";
 import emailjs from "@emailjs/browser";
+import { FadeLoader } from "react-spinners";
 
 const Contact = ({ timeline, ease }) => {
     let mainTitle = useRef();
@@ -41,10 +42,12 @@ const Contact = ({ timeline, ease }) => {
     const [formValid, setFormValid] = useState(false);
     const [popUp, setPopUp] = useState(false);
     const [isSent, setIsSent] = useState(false);
+    const [isLoading, setIsLoading] = useState(false);
     const form = useRef();
     const irrelevantClick = useRef();
 
     useLockScroll(popUp);
+    useLockScroll(isLoading);
     const popUpHandler = () => {
         setPopUp(!popUp);
     };
@@ -68,9 +71,13 @@ const Contact = ({ timeline, ease }) => {
                 setMessage("");
                 setPopUp(true);
                 setIsSent(true);
+                setIsLoading(false);
+                setDirtyEmail(false);
+                setDirtyName(false);
             },
             (error) => {
                 console.log(error.text);
+                setIsLoading(false);
             }
         );
     };
@@ -100,10 +107,10 @@ const Contact = ({ timeline, ease }) => {
     };
     const blurHandler = (e) => {
         switch (e.target.name) {
-            case "email":
+            case "user_email":
                 setDirtyEmail(true);
                 break;
-            case "name":
+            case "user_name":
                 setDirtyName(true);
         }
     };
@@ -180,10 +187,9 @@ const Contact = ({ timeline, ease }) => {
                                     placeholder={t("inputMessage")}
                                     name="message"
                                     id="message"
-                                    required
                                 />
                             </div>
-                            <button disabled={!formValid} className={styles.button} type="submit">
+                            <button onClick={(e) => setIsLoading(true)} disabled={!formValid} className={styles.button} type="submit">
                                 {t("button")}
                             </button>
                         </form>
@@ -228,6 +234,11 @@ const Contact = ({ timeline, ease }) => {
                     )}
                 </div>
             </div>
+            {isLoading ? (
+                <div className={styles.loader}>
+                    <FadeLoader color="#ff3297" size={50} />
+                </div>
+            ) : null}
         </section>
     );
 };

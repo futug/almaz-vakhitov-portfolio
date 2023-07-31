@@ -14,7 +14,7 @@ import { BsFiletypePdf } from "react-icons/bs";
 import styles from "./Navbar.module.css";
 
 const navLinks = NAV_LINKS;
-const Navbar = ({ timeline, ease, lang, setLang, scrollIntoView }) => {
+const Navbar = ({ timeline, ease, lang, setLang }) => {
     const { t } = useTranslation();
     const [isOpen, setIsOpen] = useState(false);
     const [cvIsOpen, setCvIsOpen] = useState(false);

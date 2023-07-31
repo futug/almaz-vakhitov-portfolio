@@ -53,7 +53,8 @@
 
     .itemAuthor {
         font-size: 12px;
-        max-width: 150px;
+        width: fit-content;
+        text-align: right;
     }
 }
 
