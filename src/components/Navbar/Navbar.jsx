@@ -115,8 +115,8 @@ const Navbar = ({ timeline, ease, lang, setLang, scrollIntoView }) => {
                                 </select>
                                 <BiSolidDownArrow size={10} className={styles.downArrow} />
                             </div>
-                            <div className={styles.hamburger}>
-                                <AiOutlineMenu onClick={handleMenuOpen} size={25} />
+                            <div className={styles.hamburger} onClick={handleMenuOpen}>
+                                <AiOutlineMenu size={25} />
                             </div>
                         </nav>
                     </div>
