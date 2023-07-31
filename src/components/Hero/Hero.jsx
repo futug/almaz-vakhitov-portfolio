@@ -42,7 +42,20 @@ const Hero = ({ timeline, lang }) => {
         });
     }, []);
 
-    console.log(videoIsOpen);
+    const video = useRef(null);
+    const videoFrame = useRef();
+    const handleVideoOutside = (e) => {
+        if (videoIsOpen && !video.current.contains(e.target) && videoFrame.current.contains(e.target)) {
+            setVideoIsOpen(false);
+        }
+    };
+
+    useEffect(() => {
+        document.body.addEventListener("click", handleVideoOutside);
+        return () => {
+            document.body.removeEventListener("click", handleVideoOutside);
+        };
+    }, [videoIsOpen]);
 
     return (
         <section>
@@ -99,8 +112,16 @@ const Hero = ({ timeline, lang }) => {
             </div>
 
             {videoIsOpen ? (
-                <div className={styles.videoLayout}>
-                    <iframe className={styles.video} src={previewUrl} title="YouTube video player" frameborder="0" allowfullscreen allow="autoplay"></iframe>
+                <div ref={videoFrame} className={styles.videoLayout}>
+                    <iframe
+                        ref={video}
+                        className={styles.video}
+                        allowfullscreen
+                        src={previewUrl}
+                        title="YouTube video player"
+                        frameborder="0"
+                        allow="autoplay"
+                    ></iframe>
 
                     {videoIsOpen ? <AiOutlineClose onClick={() => setVideoIsOpen(false)} size={30} className={styles.videoClose} /> : null}
                 </div>
