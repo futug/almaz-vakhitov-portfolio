@@ -108,20 +108,19 @@
     justify-content: center;
     align-items: center;
     transition: all 0.3s ease-in-out;
-    opacity: 0;
-    pointer-events: none;
+    /* transform: scale(0); */
 }
 
 .video {
     height: auto;
     transition: all 0.6 ease-in-out;
-    width: 0;
+    width: 80%;
     aspect-ratio: 16/9;
     object-fit: cover;
 }
 
 .videoLayoutShow {
-    opacity: 1;
+    transform: scale(1);
 }
 
 .videoShow {
@@ -133,7 +132,7 @@
     top: 20px;
     right: 20px;
     cursor: pointer;
-    pointer-events: all;
+    /* pointer-events: all; */
 }
 
 @media (max-width: 768px) {

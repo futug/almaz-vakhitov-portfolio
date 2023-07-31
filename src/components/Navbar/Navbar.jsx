@@ -1,15 +1,17 @@
 import React, { useRef, useEffect, useState } from "react";
-import styles from "./Navbar.module.css";
-import { AiOutlineClose, AiOutlineDownload, AiOutlineMenu } from "react-icons/ai";
+import { Link } from "react-scroll";
+import { TypeAnimation } from "react-type-animation";
+
 import { changeLanguage } from "i18next";
 import { useTranslation } from "react-i18next";
 import useLockScroll from "../../utils/hooks/useLockScroll";
 import { NAV_LINKS } from "../../utils/constants";
-import { TypeAnimation } from "react-type-animation";
-import { Link } from "react-scroll";
 
+import { AiOutlineClose, AiOutlineDownload, AiOutlineMenu } from "react-icons/ai";
 import { BiSolidDownArrow } from "react-icons/bi";
 import { BsFiletypePdf } from "react-icons/bs";
+
+import styles from "./Navbar.module.css";
 
 const navLinks = NAV_LINKS;
 const Navbar = ({ timeline, ease, lang, setLang, scrollIntoView }) => {
