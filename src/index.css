@@ -130,3 +130,7 @@ button {
         display: none !important;
     }
 }
+
+main {
+    overflow: hidden;
+}
