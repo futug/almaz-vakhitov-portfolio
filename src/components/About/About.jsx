@@ -6,40 +6,15 @@ import { useTranslation } from "react-i18next";
 import { easeInOut, motion, transform } from "framer-motion";
 
 const About = ({ timeline, ease }) => {
-    let mainTitle = useRef();
-    let mainSubtitle = useRef();
-    let socialIconInst = useRef();
-    let socialIconTube = useRef();
-    let photo = useRef();
-    let rightBlock = useRef();
-
-    // useEffect(() => {
-    //     timeline.from(mainTitle.current, 1, {
-    //         opacity: 0,
-    //         x: -100,
-    //     });
-    //     timeline.from(mainSubtitle.current, 1, {
-    //         opacity: 0,
-    //         x: 100,
-    //     });
-    //     timeline.from([socialIconInst.current, socialIconTube.current], 1, {
-    //         opacity: 0,
-    //         y: 100,
-    //         stagger: {
-    //             amount: 0.4,
-    //         },
-    //         ease: ease,
-    //     });
-    //     timeline.from([photo.current, rightBlock.current], 1, {
-    //         opacity: 0,
-    //         x: 100,
-    //     });
-    // }, []);
-
     const fadeLeft = {
         hidden: {
             opacity: 0,
             x: -100,
+            transition: {
+                delay: 0.2,
+                duration: 1,
+                ease: "easeInOut",
+            },
         },
 
         visible: (custom) => ({
@@ -57,6 +32,11 @@ const About = ({ timeline, ease }) => {
         hidden: {
             opacity: 0,
             x: 100,
+            transition: {
+                delay: 0.2,
+                duration: 1,
+                ease: "easeInOut",
+            },
         },
         visible: (custom) => ({
             opacity: 1,
@@ -73,6 +53,11 @@ const About = ({ timeline, ease }) => {
         hidden: {
             opacity: 0,
             y: 100,
+            transition: {
+                delay: 0.2,
+                duration: 1,
+                ease: "easeInOut",
+            },
         },
         visible: (custom) => ({
             opacity: 1,
@@ -88,14 +73,14 @@ const About = ({ timeline, ease }) => {
     const { t } = useTranslation();
 
     return (
-        <motion.section initial="hidden" whileInView="visible" viewport={{ amount: 0.5 }} className={styles.about} id="about">
+        <motion.section initial="hidden" whileInView="visible" viewport={{ amount: 0.4 }} className={styles.about} id="about">
             <div className="container">
                 <div className={styles.aboutWrapper}>
                     <div className={styles.titleGroup}>
                         <motion.p variants={fadeLeft} custom={1} className={styles.title}>
                             {t("aboutTitle")}
                         </motion.p>
-                        <motion.h1 variants={fadeRight} custom={2} ref={mainSubtitle} className={styles.subtitle}>
+                        <motion.h1 variants={fadeRight} custom={2} className={styles.subtitle}>
                             {t("aboutSubTitle")}
                         </motion.h1>
                     </div>
