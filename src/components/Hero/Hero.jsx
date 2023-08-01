@@ -8,11 +8,25 @@ import { AiOutlineClose } from "react-icons/ai";
 import { VIDEO_PREVIEWS_LEFT } from "../../utils/constants";
 
 const heroVidePreviews = VIDEO_PREVIEWS_LEFT;
+const BUTTONS = {
+    Hide: {
+        nameEng: "Hide all",
+        nameRu: "Скрыть",
+        nameTr: "Tümünü gizle",
+    },
+    Show: {
+        nameEng: "Show all",
+        nameRu: "Еще",
+        nameTr: "Daha fazlasını göster",
+    },
+};
 
 const Hero = ({ timeline, lang }) => {
     const [previewUrl, setPreviewUrl] = useState("");
     const [videoIsOpen, setVideoIsOpen] = useState(false);
     const [visible, setVisible] = useState(3);
+
+    const btns = BUTTONS;
 
     const showMore = () => {
         visible >= heroVidePreviews.length ? setVisible(3) : setVisible((prevValue) => prevValue + 3);
@@ -112,7 +126,17 @@ const Hero = ({ timeline, lang }) => {
                     {breakpoint == "laptop" || breakpoint == "tablet" ? (
                         <div className={styles.buttonWrapper}>
                             <button className={styles.button} onClick={showMore}>
-                                {visible >= heroVidePreviews.length ? "Hide all" : "Show more"}
+                                {visible >= heroVidePreviews.length
+                                    ? lang === "en"
+                                        ? btns.Hide.nameEng
+                                        : lang === "ru"
+                                        ? btns.Hide.nameRu
+                                        : btns.Hide.nameTr
+                                    : lang === "en"
+                                    ? btns.Show.nameEng
+                                    : lang === "ru"
+                                    ? btns.Show.nameRu
+                                    : btns.Show.nameTr}
                             </button>
                         </div>
                     ) : null}
