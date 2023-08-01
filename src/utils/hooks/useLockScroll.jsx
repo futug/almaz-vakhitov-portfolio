@@ -1,11 +1,13 @@
 import { useEffect } from "react";
 
-const useCustomScroll = (state) => {
+const useCustomScroll = (states) => {
     const handleScroll = () => {
-        if (state === true) {
-            document.querySelector("body").style.overflow = "hidden";
-        } else {
-            document.querySelector("body").style.overflow = "auto";
+        for (const state of states) {
+            if (state === true) {
+                document.querySelector("body").style.overflow = "hidden";
+            } else {
+                document.querySelector("body").style.overflow = "auto";
+            }
         }
     };
 
@@ -16,7 +18,7 @@ const useCustomScroll = (state) => {
         return () => {
             window.removeEventListener("scroll", handleScroll);
         };
-    }, [state]);
+    }, [states]);
 };
 
 export default useCustomScroll;

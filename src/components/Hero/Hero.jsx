@@ -19,7 +19,7 @@ const Hero = ({ timeline, lang }) => {
         setPreviewUrl(src);
     };
 
-    useLockScroll(videoIsOpen);
+    useLockScroll([videoIsOpen]);
 
     const { t } = useTranslation();
     let leftsideItems = useRef([]);

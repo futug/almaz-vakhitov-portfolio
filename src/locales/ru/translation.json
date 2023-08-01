@@ -39,5 +39,8 @@
     "inputName": "Имя",
     "inputEmail": "Email",
     "inputMessage": "Ваше сообщение",
-    "button": "Отправить"
+    "button": "Отправить",
+    "emptyError": "Это поле не может быть пустым :(",
+    "minLengthError": "Минимальная длинна  ",
+    "emailValid": "Не думаю, что смогу написать сюда :("
 }

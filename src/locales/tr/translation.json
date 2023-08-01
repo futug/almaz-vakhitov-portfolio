@@ -39,5 +39,7 @@
     "inputName": "İsim",
     "inputEmail": "Email",
     "inputMessage": "Mesaj",
-    "button": "Gönder"
+    "button": "Gönder",
+    "emptyError": "Bu alan boş olamaz :(",
+    "minLengthError": "Buraya e-posta gönderebileceğimi sanmıyorum :("
 }

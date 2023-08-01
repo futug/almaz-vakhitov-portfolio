@@ -19,7 +19,7 @@ const Navbar = ({ timeline, ease, lang, setLang }) => {
     const [isOpen, setIsOpen] = useState(false);
     const [cvIsOpen, setCvIsOpen] = useState(false);
 
-    useLockScroll(isOpen);
+    useLockScroll([isOpen]);
     const [scrollDown, setScrollDown] = useState(false);
     const handleMenuOpen = () => {
         setIsOpen(!isOpen);

@@ -1,5 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import useLockScroll from "../../utils/hooks/useLockScroll";
+import useInput from "../../utils/hooks/FormValidation/useInput";
+import useValidation from "../../utils/hooks/FormValidation/useValidation";
 import styles from "./Contact.module.css";
 import { AiOutlineInstagram, AiOutlineMail, AiOutlineClose } from "react-icons/ai";
 import { LiaTelegramPlane } from "react-icons/lia";
@@ -32,23 +34,31 @@ const Contact = ({ timeline, ease }) => {
     }, []);
     const { t } = useTranslation();
 
-    const [email, setEmail] = useState("");
-    const [name, setName] = useState("");
-    const [dirtyEmail, setDirtyEmail] = useState(false);
-    const [dirtyName, setDirtyName] = useState(false);
-    const [emailError, setEmailError] = useState("Email can't be empty :(");
-    const [nameError, setNameError] = useState("Can i know your name?");
     const [message, setMessage] = useState("");
-    const [formValid, setFormValid] = useState(false);
+
     const [popUp, setPopUp] = useState(false);
     const [isSent, setIsSent] = useState(false);
     const [isLoading, setIsLoading] = useState(false);
     const form = useRef();
     const irrelevantClick = useRef();
 
-    useLockScroll(popUp);
-    useLockScroll(isLoading);
+    const email = useInput("", {
+        isEmpty: true,
+        minLength: 6,
+        emailValid: true,
+    });
+    const name = useInput("", {
+        isEmpty: true,
+        minLength: 3,
+    });
+
+    useLockScroll([popUp, isLoading, isSent]);
+
     const popUpHandler = () => {
+        if (isSent === true) {
+            setIsSent(false);
+        }
+
         setPopUp(!popUp);
     };
 
@@ -66,62 +76,18 @@ const Contact = ({ timeline, ease }) => {
         emailjs.sendForm("service_vq4ztwk", "template_q7yv80k", form.current, "qk3s_r4Tf0yePeXWF").then(
             (result) => {
                 console.log(result.text);
-                setEmail("");
-                setName("");
-                setMessage("");
                 setPopUp(true);
                 setIsSent(true);
                 setIsLoading(false);
-                setDirtyEmail(false);
-                setDirtyName(false);
+                setMessage("");
+                email.reset();
+                name.reset();
             },
             (error) => {
-                console.log(error.text);
                 setIsLoading(false);
             }
         );
     };
-
-    const nameHandler = (e) => {
-        setName(e.target.value);
-        const re = /^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$/;
-        if (!re.test(String(e.target.value).toLowerCase())) {
-            setNameError("Numbers in the name? Your Majesty?");
-        } else {
-            setNameError("");
-        }
-        setDirtyName(false);
-    };
-
-    const emailHandler = (e) => {
-        setEmail(e.target.value);
-        const re = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
-        if (!re.test(String(e.target.value).toLowerCase())) {
-            setEmailError("Invalid adress, please check it");
-        } else if (e.target.value === "") {
-            setEmailError("Email can't be empty :(");
-        } else {
-            setEmailError("");
-        }
-        setDirtyEmail(false);
-    };
-    const blurHandler = (e) => {
-        switch (e.target.name) {
-            case "user_email":
-                setDirtyEmail(true);
-                break;
-            case "user_name":
-                setDirtyName(true);
-        }
-    };
-
-    useEffect(() => {
-        if (nameError || emailError) {
-            setFormValid(false);
-        } else {
-            setFormValid(true);
-        }
-    }, [emailError, nameError]);
 
     return (
         <section id="contact">
@@ -152,11 +118,12 @@ const Contact = ({ timeline, ease }) => {
                         </div>
                         <form ref={form} onSubmit={sendEmail}>
                             <div className={styles.inputField}>
-                                {dirtyName && nameError && <div className="error">{nameError}</div>}
+                                {name.dirty && name.isEmpty && <div className="error">{name.errorMessages.isEmpty}</div>}
+                                {name.dirty && name.minLength && <div className="error">{name.errorMessages.minLength}</div>}
                                 <input
-                                    value={name}
-                                    onChange={nameHandler}
-                                    onBlur={blurHandler}
+                                    value={name.value}
+                                    onChange={(e) => name.onChange(e)}
+                                    onBlur={(e) => name.onBlur(e)}
                                     className={styles.input}
                                     type="text"
                                     placeholder={t("inputName")}
@@ -166,11 +133,13 @@ const Contact = ({ timeline, ease }) => {
                                 />
                             </div>
                             <div className={styles.inputField}>
-                                {dirtyEmail && emailError && <div className="error">{emailError}</div>}
+                                {email.dirty && email.isEmpty && <div className="error">{email.errorMessages.isEmpty}</div>}
+                                {email.dirty && email.minLength && <div className="error">{email.errorMessages.minLength}</div>}
+                                {email.dirty && email.emailError && <div className="error">{email.errorMessages.email}</div>}
                                 <input
-                                    value={email}
-                                    onChange={emailHandler}
-                                    onBlur={blurHandler}
+                                    value={email.value}
+                                    onChange={(e) => email.onChange(e)}
+                                    onBlur={(e) => email.onBlur(e)}
                                     className={styles.input}
                                     type="email"
                                     placeholder={t("inputEmail")}
@@ -189,13 +158,22 @@ const Contact = ({ timeline, ease }) => {
                                     id="message"
                                 />
                             </div>
-                            <button onClick={(e) => setIsLoading(true)} disabled={!formValid} className={styles.button} type="submit">
+                            <button
+                                onClick={(e) => setIsLoading(true)}
+                                disabled={!email.inputValid || !name.inputValid}
+                                className={styles.button}
+                                type="submit"
+                            >
                                 {t("button")}
                             </button>
                         </form>
                     </div>
                 </div>
-                <div onClick={outsideClickHandler} ref={irrelevantClick} className={`${styles.successSendingPopupWrapper} ${popUp ? styles.showWrapper : ""}`}>
+                <div
+                    onClick={(e) => setPopUp(false)}
+                    ref={irrelevantClick}
+                    className={`${styles.successSendingPopupWrapper} ${popUp ? styles.showWrapper : ""}`}
+                >
                     {isSent ? (
                         <div className={`${styles.successSendingPopup} ${popUp ? styles.showPopup : ""}`}>
                             <h2>Looks like you send me a message, pretty one!</h2>

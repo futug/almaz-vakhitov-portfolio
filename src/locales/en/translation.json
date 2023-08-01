@@ -39,5 +39,8 @@
     "inputName": "Name",
     "inputEmail": "Email",
     "inputMessage": "Message",
-    "button": "Send"
+    "button": "Send",
+    "emptyError": "This field can't be empty :(",
+    "minLengthError": "Minimum length should be ",
+    "emailValid": "I don't think I can email here :("
 }
