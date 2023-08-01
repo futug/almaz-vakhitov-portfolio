@@ -42,5 +42,10 @@
     "button": "Send",
     "emptyError": "This field can't be empty :(",
     "minLengthError": "Minimum length should be ",
-    "emailValid": "I don't think I can email here :("
+    "emailValid": "I don't think I can email here :(",
+    "contactSuccessTitle": "Looks like you send me a message, pretty one!",
+    "contactSuccessSubtitle": "I promisse to read and replay you as soon as possible!",
+    "contactsSuccesSocial": "Let's stay in touch:",
+    "contactFailTitle": "Oooops! Looks like something went wrong!",
+    "contactFailSubtitle": "I don't know what happened, but hope that i started to fix it! Try to catch me again with the direct addressing by:"
 }

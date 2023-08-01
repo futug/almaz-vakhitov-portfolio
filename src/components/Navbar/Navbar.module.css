@@ -228,6 +228,11 @@
 
 /* MENU_BLOCK-navbarBlock_ENDS */
 
+@media (max-width: 1280px) {
+    .downloadLabel {
+        display: none;
+    }
+}
 @media (max-width: 1024px) {
     .logo > span {
         display: none;

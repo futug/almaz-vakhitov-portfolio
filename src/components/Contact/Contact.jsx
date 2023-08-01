@@ -176,9 +176,9 @@ const Contact = ({ timeline, ease }) => {
                 >
                     {isSent ? (
                         <div className={`${styles.successSendingPopup} ${popUp ? styles.showPopup : ""}`}>
-                            <h2>Looks like you send me a message, pretty one!</h2>
-                            <p>I promisse to read and replay you as soon as possible!</p>
-                            <p>Let's stay in touch:</p>
+                            <h2>{t("contactSuccessTitle")}</h2>
+                            <p>{t("contactSuccessSubtitle")}</p>
+                            <p>{t("contactsSuccesSocial")}</p>
                             <div className={styles.contactIcons}>
                                 <a href="https://www.instagram.com/etozhemazei/" target="_blank">
                                     <AiOutlineInstagram className={styles.socialIco} size={25} />
@@ -194,8 +194,8 @@ const Contact = ({ timeline, ease }) => {
                         </div>
                     ) : (
                         <div className={`${styles.successSendingPopup} ${popUp ? styles.showPopup : ""}`}>
-                            <h2>Oooops! Looks like something went wrong!</h2>
-                            <p>I don't know what happened, but hope that i started to fix it! Try to catch me again with the direct addressing by:</p>
+                            <h2>{t("contactFailTitle")}</h2>
+                            <p>{t("contactFailSubtitle")}</p>
                             <div className={styles.contactIcons}>
                                 <a href="https://www.instagram.com/etozhemazei/" target="_blank">
                                     <AiOutlineInstagram className={styles.socialIco} size={25} />

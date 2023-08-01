@@ -43,5 +43,10 @@
     "inputMessage": "Mesaj",
     "button": "Gönder",
     "emptyError": "Bu alan boş olamaz :(",
-    "minLengthError": "Buraya e-posta gönderebileceğimi sanmıyorum :("
+    "minLengthError": "Buraya e-posta gönderebileceğimi sanmıyorum :(",
+    "contactSuccessTitle": "Bana bir mesaj göndermişsin gibi görünüyor, güzel olan!",
+    "contactSuccessSubtitle": "Size en kısa sürede okuyacağıma ve cevap vereceğime söz veriyorum!",
+    "contactsSuccesSocial": "İletişimde kalalım:",
+    "contactFailTitle": "Oooops! Bir şeyler ters gitmiş gibi görünüyor!",
+    "contactFailSubtitle": "Ne olduğunu bilmiyorum ama umarım düzeltmeye başlamışımdır! Doğrudan adresleme ile beni tekrar yakalamaya çalışın:"
 }
