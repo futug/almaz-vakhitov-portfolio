@@ -62,6 +62,7 @@ const Navbar = ({ timeline, ease, lang, setLang }) => {
         const handlerScrollDown = () => {
             if (window.pageYOffset > 10) {
                 setScrollDown(true);
+                setCvIsOpen(false);
             } else {
                 setScrollDown(false);
             }

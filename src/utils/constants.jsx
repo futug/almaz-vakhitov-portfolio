@@ -60,11 +60,8 @@ export const VIDEO_PREVIEWS_LEFT = [
         titleTr: "SNew Balance 530 - Yorum",
         src: `${BASE_YOUTUBE_URL}ZxbpsCjkY5c${YOUTUBE_AUTOPLAY_QUERRY}`,
     },
-];
-
-export const VIDEO_PREVIEWS_RIGHT = [
     {
-        id: 0,
+        id: 3,
         srcJpeg: "./image2.jpg",
         srcWebp: "./image2.webp",
         title: "Most Expensive Jordans",
@@ -73,7 +70,7 @@ export const VIDEO_PREVIEWS_RIGHT = [
         src: `${BASE_YOUTUBE_URL}yIfV3aLJEnw${YOUTUBE_AUTOPLAY_QUERRY}`,
     },
     {
-        id: 1,
+        id: 4,
         srcJpeg: "./image4.jpg",
         srcWebp: "./image4.webp",
         title: "Annoyed Triangle",
@@ -82,7 +79,7 @@ export const VIDEO_PREVIEWS_RIGHT = [
         src: `${BASE_YOUTUBE_URL}WGhS6-fDSB0${YOUTUBE_AUTOPLAY_QUERRY}`,
     },
     {
-        id: 3,
+        id: 5,
         srcJpeg: "./image6.jpg",
         srcWebp: "./image6.webp",
         title: 'Concept" Sneakers Shop',
