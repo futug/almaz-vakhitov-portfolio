@@ -31,4 +31,4 @@
 1. Кастомный прелоудер
 2. ~~Подобрать CMS~~
 3. ~~Scroll - анимации~~
-4. SmoothScroller
+4. ~~åSmoothScroller~~

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useTranslation } from "react-i18next";
 import "./App.css";
 import Navbar from "./components/Navbar/Navbar";
@@ -11,6 +11,7 @@ import { Footer } from "./components/Footer/Footer";
 
 import { gsap, Power3 } from "gsap";
 import { PacmanLoader } from "react-spinners";
+import LocomotiveScroll from "locomotive-scroll";
 
 function App() {
     const [isLoading, setIsLoading] = useState(true);
@@ -21,6 +22,22 @@ function App() {
     const changeLanguage = (lng) => {
         i18n.changeLanguage(lng);
     };
+
+    let containerRef = useRef();
+    useEffect(() => {
+        const locomotiveScroll = new LocomotiveScroll({
+            el: containerRef.current,
+            smooth: true,
+            direction: "vertical",
+            smartphone: {
+                smooth: true,
+            },
+        });
+
+        return () => {
+            locomotiveScroll.destroy();
+        };
+    }, []);
 
     useEffect(() => {
         const timer = setTimeout(() => {
@@ -45,7 +62,7 @@ function App() {
                     {/* pagetop anchor */}
                     <Navbar timeline={tl} ease={ease} changeLanguage={changeLanguage} lang={lang} setLang={setLang} />
 
-                    <main>
+                    <main ref={containerRef}>
                         <Hero timeline={tl} ease={ease} t={t} lang={lang} />
                         <About timeline={tl} ease={ease} lang={lang} />
                         <Skills timeline={tl} ease={ease} lang={lang} />
