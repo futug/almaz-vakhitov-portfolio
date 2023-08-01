@@ -24,20 +24,20 @@ function App() {
     };
 
     let containerRef = useRef();
-    useEffect(() => {
-        const locomotiveScroll = new LocomotiveScroll({
-            el: containerRef.current,
-            smooth: true,
-            direction: "vertical",
-            smartphone: {
-                smooth: true,
-            },
-        });
+    // useEffect(() => {
+    //     const locomotiveScroll = new LocomotiveScroll({
+    //         el: containerRef.current,
+    //         smooth: true,
+    //         direction: "vertical",
+    //         smartphone: {
+    //             smooth: true,
+    //         },
+    //     });
 
-        return () => {
-            locomotiveScroll.destroy();
-        };
-    }, []);
+    //     return () => {
+    //         locomotiveScroll.destroy();
+    //     };
+    // }, []);
 
     useEffect(() => {
         const timer = setTimeout(() => {

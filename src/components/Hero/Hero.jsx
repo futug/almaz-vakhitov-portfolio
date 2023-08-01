@@ -6,28 +6,13 @@ import { useTranslation } from "react-i18next";
 import { CiPlay1 } from "react-icons/ci";
 import { AiOutlineClose } from "react-icons/ai";
 import { VIDEO_PREVIEWS_LEFT } from "../../utils/constants";
-import { motion } from "framer-motion";
 
 const heroVidePreviews = VIDEO_PREVIEWS_LEFT;
-const BUTTONS = {
-    Hide: {
-        nameEng: "Hide all",
-        nameRu: "Скрыть",
-        nameTr: "Tümünü gizle",
-    },
-    Show: {
-        nameEng: "Show all",
-        nameRu: "Еще",
-        nameTr: "Daha fazlasını göster",
-    },
-};
 
 const Hero = ({ timeline, lang }) => {
     const [previewUrl, setPreviewUrl] = useState("");
     const [videoIsOpen, setVideoIsOpen] = useState(false);
     const [visible, setVisible] = useState(3);
-
-    const btns = BUTTONS;
 
     const showMore = () => {
         visible >= heroVidePreviews.length ? setVisible(3) : setVisible((prevValue) => prevValue + 3);
@@ -44,52 +29,41 @@ const Hero = ({ timeline, lang }) => {
     useLockScroll([videoIsOpen]);
 
     const { t } = useTranslation();
+    const leftsideItems = useRef([]);
+    const rightSideItems = useRef([]);
 
-    const fadeRight = {
-        hidden: (custom) => ({
-            opacity: 0,
-            x: 100,
-            transition: {
-                delay: custom * 0.4,
-                duration: 1,
-                ease: "easeInOut",
+    useEffect(() => {
+        timeline.fromTo(
+            leftsideItems.current,
+            {
+                opacity: 0,
+                x: -100,
             },
-        }),
-        visible: (custom) => ({
-            opacity: 1,
-            x: 0,
-
-            transition: {
-                delay: custom * 0.4,
+            {
                 duration: 1,
-                ease: "easeInOut",
+                opacity: 1,
+                x: 0,
+                stagger: {
+                    amount: 0.8,
+                },
+            }
+        );
+        timeline.fromTo(
+            rightSideItems.current,
+            {
+                opacity: 0,
+                x: 100,
             },
-        }),
-    };
-
-    const fadeLeft = {
-        hidden: (custom) => ({
-            opacity: 0,
-            x: -100,
-
-            transition: {
-                delay: custom * 0.4,
+            {
                 duration: 1,
-                ease: "easeInOut",
-            },
-        }),
-
-        visible: (custom) => ({
-            opacity: 1,
-            x: 0,
-
-            transition: {
-                delay: custom * 0.4,
-                duration: 1,
-                ease: "easeInOut",
-            },
-        }),
-    };
+                opacity: 1,
+                x: 0,
+                stagger: {
+                    amount: 0.8,
+                },
+            }
+        );
+    }, [timeline]);
 
     const video = useRef(null);
     const videoFrame = useRef();
@@ -111,18 +85,17 @@ const Hero = ({ timeline, lang }) => {
     const breakpoint = useBreakpoint();
 
     return (
-        <motion.section initial="hidden" whileInView="visible" viewport={{ amount: 0.4, once: true }}>
+        <section>
             <img className={styles.heroBackground} src="./background-asset.svg" alt="" />
             <img className={styles.heroBackgroundRight} src="./background-asset.svg" alt="" />
             <div className="container">
                 <div className={styles.heroWrapper}>
                     <div className={styles.heroItems}>
-                        {breakpoint == "laptop" || breakpoint == "tablet"
+                        {breakpoint === "laptop" || breakpoint === "tablet"
                             ? heroVidePreviews.slice(0, visible).map((item, index) => (
-                                  <motion.div
-                                      variants={index % 2 === 0 ? fadeLeft : fadeRight}
-                                      custom={index}
+                                  <div
                                       onClick={() => handlePreviewClick(item.src)}
+                                      ref={index % 2 ? (el) => (rightSideItems.current[index] = el) : (el) => (leftsideItems.current[index] = el)}
                                       className={styles.imageWrapper}
                                       key={item.id}
                                   >
@@ -137,13 +110,12 @@ const Hero = ({ timeline, lang }) => {
                                           </div>
                                           <div className={styles.playTitle}>{lang === "en" ? item.title : lang === "ru" ? item.titleRu : item.titleTr}</div>
                                       </div>
-                                  </motion.div>
+                                  </div>
                               ))
                             : heroVidePreviews.map((item, index) => (
-                                  <motion.div
-                                      variants={index % 2 === 0 ? fadeLeft : fadeRight}
-                                      custom={index}
+                                  <div
                                       onClick={() => handlePreviewClick(item.src)}
+                                      ref={index % 2 ? (el) => (rightSideItems.current[index] = el) : (el) => (leftsideItems.current[index] = el)}
                                       className={styles.imageWrapper}
                                       key={item.id}
                                   >
@@ -158,23 +130,13 @@ const Hero = ({ timeline, lang }) => {
                                           </div>
                                           <div className={styles.playTitle}>{lang === "en" ? item.title : lang === "ru" ? item.titleRu : item.titleTr}</div>
                                       </div>
-                                  </motion.div>
+                                  </div>
                               ))}
                     </div>
-                    {breakpoint == "laptop" || breakpoint == "tablet" ? (
+                    {breakpoint === "laptop" || breakpoint === "tablet" ? (
                         <div className={styles.buttonWrapper}>
                             <button className={styles.button} onClick={showMore}>
-                                {visible >= heroVidePreviews.length
-                                    ? lang === "en"
-                                        ? btns.Hide.nameEng
-                                        : lang === "ru"
-                                        ? btns.Hide.nameRu
-                                        : btns.Hide.nameTr
-                                    : lang === "en"
-                                    ? btns.Show.nameEng
-                                    : lang === "ru"
-                                    ? btns.Show.nameRu
-                                    : btns.Show.nameTr}
+                                {visible >= heroVidePreviews.length ? "Hide all" : "Show more"}
                             </button>
                         </div>
                     ) : null}
@@ -186,17 +148,17 @@ const Hero = ({ timeline, lang }) => {
                     <iframe
                         ref={video}
                         className={styles.video}
-                        allowfullscreen
+                        allowFullScreen
                         src={previewUrl}
-                        frameBorder={0}
                         title="YouTube video player"
+                        frameBorder="0"
                         allow="autoplay"
                     ></iframe>
 
                     {videoIsOpen ? <AiOutlineClose onClick={() => setVideoIsOpen(false)} size={30} className={styles.videoClose} /> : null}
                 </div>
             ) : null}
-        </motion.section>
+        </section>
     );
 };
 
