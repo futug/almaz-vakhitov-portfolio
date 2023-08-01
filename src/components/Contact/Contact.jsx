@@ -9,29 +9,73 @@ import { useTranslation } from "react-i18next";
 import emailjs from "@emailjs/browser";
 import { FadeLoader } from "react-spinners";
 
-const Contact = ({ timeline, ease }) => {
-    let mainTitle = useRef();
-    let mainSubtitle = useRef();
-    let formMain = useRef();
+import { motion } from "framer-motion";
 
-    useEffect(() => {
-        timeline.from(mainTitle.current, 1, {
+const Contact = ({ timeline, ease }) => {
+    const fadeLeft = {
+        hidden: (custom) => ({
             opacity: 0,
             x: -100,
-        });
-        timeline.from(mainSubtitle.current, 1, {
+            transition: {
+                delay: custom * 0.2,
+                duration: 1,
+                ease: "easeInOut",
+            },
+        }),
+
+        visible: (custom) => ({
+            opacity: 1,
+            x: 0,
+            transition: {
+                delay: custom * 0.2,
+                duration: 1,
+                ease: "easeInOut",
+            },
+        }),
+    };
+
+    const fadeRight = {
+        hidden: (custom) => ({
             opacity: 0,
             x: 100,
-        });
-        timeline.from(form.current, 1, {
+            transition: {
+                delay: custom * 0.2,
+                duration: 1,
+                ease: "easeInOut",
+            },
+        }),
+        visible: (custom) => ({
+            opacity: 1,
+            x: 0,
+            transition: {
+                delay: custom * 0.2,
+                duration: 1,
+                ease: "easeInOut",
+            },
+        }),
+    };
+
+    const fadeBottom = {
+        hidden: (custom) => ({
             opacity: 0,
             y: 100,
-            stagger: {
-                amount: 0.4,
+            transition: {
+                delay: custom * 0.2,
+                duration: 1,
+                ease: "easeInOut",
             },
-            ease: ease,
-        });
-    }, []);
+        }),
+        visible: (custom) => ({
+            opacity: 1,
+            y: 0,
+            transition: {
+                delay: custom * 0.5,
+                duration: 1,
+                ease: "easeInOut",
+            },
+        }),
+    };
+
     const { t } = useTranslation();
 
     const [message, setMessage] = useState("");
@@ -90,18 +134,18 @@ const Contact = ({ timeline, ease }) => {
     };
 
     return (
-        <section id="contact">
+        <motion.section initial="hidden" whileInView="visible" viewport={{ amount: 0.2 }} id="contact">
             <div className="container">
                 <div className={styles.contactWrapper}>
                     <div className={styles.titleGroup}>
-                        <p ref={mainTitle} className={styles.title}>
+                        <motion.p variants={fadeLeft} custom={1} className={styles.title}>
                             {t("contactTitle")}
-                        </p>
-                        <p ref={mainSubtitle} className={styles.subtitle}>
+                        </motion.p>
+                        <motion.p variants={fadeRight} custom={2} className={styles.subtitle}>
                             {t("contactSubTitle")}
-                        </p>
+                        </motion.p>
                     </div>
-                    <div ref={formMain} className={styles.contactForm}>
+                    <motion.div variants={fadeBottom} custom={3} className={styles.contactForm}>
                         <div className={styles.contactInfo}>
                             <p className={styles.contactText}>{t("contactText")}</p>
                             <div className={styles.contactIcons}>
@@ -167,7 +211,7 @@ const Contact = ({ timeline, ease }) => {
                                 {t("button")}
                             </button>
                         </form>
-                    </div>
+                    </motion.div>
                 </div>
                 <div
                     onClick={(e) => setPopUp(false)}
@@ -217,7 +261,7 @@ const Contact = ({ timeline, ease }) => {
                     <FadeLoader color="#ff3297" size={50} />
                 </div>
             ) : null}
-        </section>
+        </motion.section>
     );
 };
 

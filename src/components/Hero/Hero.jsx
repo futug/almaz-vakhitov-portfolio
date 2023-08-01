@@ -6,6 +6,7 @@ import { useTranslation } from "react-i18next";
 import { CiPlay1 } from "react-icons/ci";
 import { AiOutlineClose } from "react-icons/ai";
 import { VIDEO_PREVIEWS_LEFT } from "../../utils/constants";
+import { motion } from "framer-motion";
 
 const heroVidePreviews = VIDEO_PREVIEWS_LEFT;
 const BUTTONS = {
@@ -43,17 +44,52 @@ const Hero = ({ timeline, lang }) => {
     useLockScroll([videoIsOpen]);
 
     const { t } = useTranslation();
-    let leftsideItems = useRef([]);
 
-    useEffect(() => {
-        timeline.from(leftsideItems.current, 1.4, {
+    const fadeRight = {
+        hidden: (custom) => ({
+            opacity: 0,
+            x: 100,
+            transition: {
+                delay: custom * 0.4,
+                duration: 1,
+                ease: "easeInOut",
+            },
+        }),
+        visible: (custom) => ({
+            opacity: 1,
+            x: 0,
+
+            transition: {
+                delay: custom * 0.4,
+                duration: 1,
+                ease: "easeInOut",
+            },
+        }),
+    };
+
+    const fadeLeft = {
+        hidden: (custom) => ({
             opacity: 0,
             x: -100,
-            stagger: {
-                amount: 0.8,
+
+            transition: {
+                delay: custom * 0.4,
+                duration: 1,
+                ease: "easeInOut",
             },
-        });
-    }, []);
+        }),
+
+        visible: (custom) => ({
+            opacity: 1,
+            x: 0,
+
+            transition: {
+                delay: custom * 0.4,
+                duration: 1,
+                ease: "easeInOut",
+            },
+        }),
+    };
 
     const video = useRef(null);
     const videoFrame = useRef();
@@ -75,7 +111,7 @@ const Hero = ({ timeline, lang }) => {
     const breakpoint = useBreakpoint();
 
     return (
-        <section>
+        <motion.section initial="hidden" whileInView="visible" viewport={{ amount: 0.4 }}>
             <img className={styles.heroBackground} src="./background-asset.svg" alt="" />
             <img className={styles.heroBackgroundRight} src="./background-asset.svg" alt="" />
             <div className="container">
@@ -83,9 +119,10 @@ const Hero = ({ timeline, lang }) => {
                     <div className={styles.heroItems}>
                         {breakpoint == "laptop" || breakpoint == "tablet"
                             ? heroVidePreviews.slice(0, visible).map((item, index) => (
-                                  <div
+                                  <motion.div
+                                      variants={index % 2 === 0 ? fadeLeft : fadeRight}
+                                      custom={index}
                                       onClick={() => handlePreviewClick(item.src)}
-                                      ref={(el) => (leftsideItems.current[index] = el)}
                                       className={styles.imageWrapper}
                                       key={item.id}
                                   >
@@ -100,12 +137,13 @@ const Hero = ({ timeline, lang }) => {
                                           </div>
                                           <div className={styles.playTitle}>{lang === "en" ? item.title : lang === "ru" ? item.titleRu : item.titleTr}</div>
                                       </div>
-                                  </div>
+                                  </motion.div>
                               ))
                             : heroVidePreviews.map((item, index) => (
-                                  <div
+                                  <motion.div
+                                      variants={index % 2 === 0 ? fadeLeft : fadeRight}
+                                      custom={index}
                                       onClick={() => handlePreviewClick(item.src)}
-                                      ref={(el) => (leftsideItems.current[index] = el)}
                                       className={styles.imageWrapper}
                                       key={item.id}
                                   >
@@ -120,7 +158,7 @@ const Hero = ({ timeline, lang }) => {
                                           </div>
                                           <div className={styles.playTitle}>{lang === "en" ? item.title : lang === "ru" ? item.titleRu : item.titleTr}</div>
                                       </div>
-                                  </div>
+                                  </motion.div>
                               ))}
                     </div>
                     {breakpoint == "laptop" || breakpoint == "tablet" ? (
@@ -158,7 +196,7 @@ const Hero = ({ timeline, lang }) => {
                     {videoIsOpen ? <AiOutlineClose onClick={() => setVideoIsOpen(false)} size={30} className={styles.videoClose} /> : null}
                 </div>
             ) : null}
-        </section>
+        </motion.section>
     );
 };
 

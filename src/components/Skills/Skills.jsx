@@ -1,88 +1,121 @@
-import React, { useEffect, useRef } from "react";
+import React from "react";
 import styles from "./Skills.module.css";
 import { ReactComponent as Motion } from "../../assets/motion.svg";
 import { ReactComponent as Postprod } from "../../assets/postprod.svg";
 import { ReactComponent as Voiceover } from "../../assets/voiceover.svg";
 import { ReactComponent as Advert } from "../../assets/advertising.svg";
 import { useTranslation } from "react-i18next";
+import { motion } from "framer-motion";
 
-const Skills = ({ timeline, ease }) => {
-    const mainTitle = useRef();
-    const mainSubtitle = useRef();
-    const description = useRef();
-    const skillItem1 = useRef();
-    const skillItem2 = useRef();
-    const skillItem3 = useRef();
-    const skillItem4 = useRef();
-
-    useEffect(() => {
-        timeline.from(mainTitle.current, 1, {
+const Skills = () => {
+    const fadeLeft = {
+        hidden: (custom) => ({
             opacity: 0,
             x: -100,
-        });
-        timeline.from(mainSubtitle.current, 1, {
+            transition: {
+                delay: custom * 0.2,
+                duration: 1,
+                ease: "easeInOut",
+            },
+        }),
+
+        visible: (custom) => ({
+            opacity: 1,
+            x: 0,
+            transition: {
+                delay: custom * 0.2,
+                duration: 1,
+                ease: "easeInOut",
+            },
+        }),
+    };
+
+    const fadeRight = {
+        hidden: (custom) => ({
             opacity: 0,
             x: 100,
-        });
-        timeline.from(description.current, 1, {
-            opacity: 0,
-            x: -100,
+            transition: {
+                delay: custom * 0.2,
+                duration: 1,
+                ease: "easeInOut",
+            },
+        }),
+        visible: (custom) => ({
+            opacity: 1,
+            x: 0,
+            transition: {
+                delay: custom * 0.2,
+                duration: 1,
+                ease: "easeInOut",
+            },
+        }),
+    };
 
-            ease: ease,
-        });
-        timeline.from([skillItem1.current, skillItem2.current, skillItem3.current, skillItem4.current], 1, {
+    const fadeBottom = {
+        hidden: (custom) => ({
             opacity: 0,
             y: 100,
-            stagger: {
-                amount: 1.2,
+            transition: {
+                delay: custom * 0.2,
+                duration: 1,
+                ease: "easeInOut",
             },
-        });
-    }, []);
+        }),
+        visible: (custom) => ({
+            opacity: 1,
+            y: 0,
+            transition: {
+                delay: custom * 0.5,
+                duration: 1,
+                ease: "easeInOut",
+            },
+        }),
+    };
 
     const { t } = useTranslation();
     return (
-        <section id="skills">
+        <motion.section initial="hidden" whileInView="visible" viewport={{ amount: 0.2 }} id="skills">
             <div className="container">
                 <div className={styles.skillsWrapper}>
                     <div className={styles.titleGroup}>
-                        <p ref={mainTitle} className={styles.title}>
+                        <motion.p variants={fadeLeft} custom={1} className={styles.title}>
                             {t("skillsTitle")}
-                        </p>
-                        <p ref={mainSubtitle} className={styles.subtitle}>
+                        </motion.p>
+                        <motion.p variants={fadeRight} custom={2} className={styles.subtitle}>
                             {t("skillsSubtitle")}
-                        </p>
+                        </motion.p>
                     </div>
-                    <div ref={description} className={styles.skillsDescription}>
+                    <motion.div variants={fadeLeft} custom={3} className={styles.skillsDescription}>
                         <p className={styles.descriptionItem}>{t("skillsDescOne")}</p>
                         <p className={styles.descriptionItem}>{t("skillsDescTwo")}</p>
                         <p className={styles.descriptionItem}>{t("skillsDescThree")}</p>
-                    </div>
+                    </motion.div>
 
                     <div className={styles.skills}>
-                        <div ref={skillItem1} className={styles.skillsItem}>
+                        <motion.div variants={fadeBottom} custom={4} className={styles.skillsItem}>
                             <Motion className={styles.iconE} />
                             <p className={styles.skillTitle}>{t("skillsItemTitleOne")}</p>
                             <p className={styles.skillsItemDesc}>{t("skillsItemDescOne")}</p>
-                        </div>
-                        <div ref={skillItem2} className={styles.skillsItem}>
+                        </motion.div>
+                        <motion.div variants={fadeBottom} custom={5} className={styles.skillsItem}>
                             <Advert className={styles.icon} />
                             <p className={styles.skillTitle}>{t("skillsItemTitleTwo")}</p>
                             <p className={styles.skillsItemDesc}>{t("skillsItemDescTwo")}</p>
-                        </div>
-                        <div ref={skillItem3} className={styles.skillsItem}>
+                        </motion.div>
+                        <motion.div variants={fadeBottom} custom={6} className={styles.skillsItem}>
                             <Postprod className={styles.iconQ} />
                             <p className={styles.skillTitle}>{t("skillsItemTitleThree")}</p>
                             <p className={styles.skillsItemDesc}>{t("skillsItemDescThree")}</p>
-                        </div>
-                        <div ref={skillItem4} className={styles.skillsItem}>
+                        </motion.div>
+                        <motion.div variants={fadeBottom} custom={7} className={styles.skillsItem}>
                             <Voiceover className={styles.icon} />
                             <p className={styles.skillTitle}>{t("skillsItemTitleFour")}</p>
                             <p className={styles.skillsItemDesc}>{t("skillsItemDescFour")}</p>
-                        </div>
+                        </motion.div>
                     </div>
                 </div>
             </div>
-        </section>
+        </motion.section>
     );
 };
 
