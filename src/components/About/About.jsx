@@ -3,7 +3,9 @@ import styles from "./About.module.css";
 import { AiOutlineInstagram, AiOutlineYoutube } from "react-icons/ai";
 import { useTranslation } from "react-i18next";
 
-const About = ({ timeline, ease, about }) => {
+import { motion } from "framer-motion";
+
+const About = ({ timeline, ease }) => {
     let mainTitle = useRef();
     let mainSubtitle = useRef();
     let socialIconInst = useRef();
