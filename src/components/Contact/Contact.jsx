@@ -134,7 +134,7 @@ const Contact = ({ timeline, ease }) => {
     };
 
     return (
-        <motion.section initial="hidden" whileInView="visible" viewport={{ amount: 0.2 }} id="contact">
+        <motion.section initial="hidden" whileInView="visible" viewport={{ amount: 0.2, once: true }} id="contact">
             <div className="container">
                 <div className={styles.contactWrapper}>
                     <div className={styles.titleGroup}>

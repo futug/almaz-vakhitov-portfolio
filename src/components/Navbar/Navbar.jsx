@@ -88,8 +88,7 @@ const Navbar = ({ timeline, ease, lang, setLang }) => {
                     <div className={styles.logoGroup}>
                         <Link to="hero" spy={true} smooth={true} offset={-50} duration={1000}>
                             <p ref={logoRef} className={styles.logo}>
-                                almaz vakhitov{" "}
-                                <TypeAnimation sequence={["videomaker", 5000, "motiondesigner", 5000, "videoeditor", 5000]} speed={10} repeat={Infinity} />
+                                almaz vakhitov <span>videoeditor</span>
                             </p>
                         </Link>
                     </div>

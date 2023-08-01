@@ -111,7 +111,7 @@ const Hero = ({ timeline, lang }) => {
     const breakpoint = useBreakpoint();
 
     return (
-        <motion.section initial="hidden" whileInView="visible" viewport={{ amount: 0.4 }}>
+        <motion.section initial="hidden" whileInView="visible" viewport={{ amount: 0.4, once: true }}>
             <img className={styles.heroBackground} src="./background-asset.svg" alt="" />
             <img className={styles.heroBackgroundRight} src="./background-asset.svg" alt="" />
             <div className="container">

@@ -73,7 +73,7 @@ const About = () => {
     const { t } = useTranslation();
 
     return (
-        <motion.section initial="hidden" whileInView="visible" viewport={{ amount: 0.4 }} className={styles.about} id="about">
+        <motion.section initial="hidden" whileInView="visible" viewport={{ amount: 0.4, once: true }} className={styles.about} id="about">
             <div className="container">
                 <div className={styles.aboutWrapper}>
                     <div className={styles.titleGroup}>

@@ -74,7 +74,7 @@ const Skills = () => {
 
     const { t } = useTranslation();
     return (
-        <motion.section initial="hidden" whileInView="visible" viewport={{ amount: 0.2 }} id="skills">
+        <motion.section initial="hidden" whileInView="visible" viewport={{ amount: 0.2, once: true }} id="skills">
             <div className="container">
                 <div className={styles.skillsWrapper}>
                     <div className={styles.titleGroup}>
