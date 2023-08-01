@@ -145,15 +145,7 @@ const Hero = ({ timeline, lang }) => {
 
             {videoIsOpen ? (
                 <div ref={videoFrame} className={styles.videoLayout}>
-                    <iframe
-                        ref={video}
-                        className={styles.video}
-                        allowfullscreen
-                        src={previewUrl}
-                        title="YouTube video player"
-                        frameborder="0"
-                        allow="autoplay"
-                    ></iframe>
+                    <iframe ref={video} className={styles.video} allowfullscreen src={previewUrl} title="YouTube video player" allow="autoplay"></iframe>
 
                     {videoIsOpen ? <AiOutlineClose onClick={() => setVideoIsOpen(false)} size={30} className={styles.videoClose} /> : null}
                 </div>

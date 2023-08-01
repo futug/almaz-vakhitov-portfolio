@@ -12,3 +12,7 @@
     font-size: 21px;
     letter-spacing: 5px;
 }
+
+.App {
+    overflow: hidden;
+}

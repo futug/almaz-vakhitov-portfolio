@@ -86,7 +86,7 @@ const Navbar = ({ timeline, ease, lang, setLang }) => {
                 <div className={styles.navbar} style={scrollDown ? { padding: "10px 0" } : {}}>
                     {/* LOGO_GROUP_STARTS */}
                     <div className={styles.logoGroup}>
-                        <Link to="hero" spy={true} smooth={true} offset={-50} duration={1000} onid="hero">
+                        <Link to="hero" spy={true} smooth={true} offset={-50} duration={1000}>
                             <p ref={logoRef} className={styles.logo}>
                                 almaz vakhitov{" "}
                                 <TypeAnimation sequence={["videomaker", 5000, "motiondesigner", 5000, "videoeditor", 5000]} speed={10} repeat={Infinity} />
@@ -113,7 +113,6 @@ const Navbar = ({ timeline, ease, lang, setLang }) => {
                                                 smooth={true}
                                                 offset={-50}
                                                 duration={500}
-                                                onid={link.name}
                                                 className={styles.link}
                                             >
                                                 {lang === "en" ? link.name : lang === "ru" ? link.nameRu : link.nameTr}

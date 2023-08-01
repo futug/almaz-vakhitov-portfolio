@@ -1,18 +1,14 @@
 import { useEffect } from "react";
 
 const useCustomScroll = (states) => {
-    const handleScroll = () => {
-        for (const state of states) {
-            if (state === true) {
-                document.querySelector("body").style.overflow = "hidden";
-            } else {
-                document.querySelector("body").style.overflow = "auto";
-            }
-        }
-    };
-
     useEffect(() => {
+        const handleScroll = () => {
+            const shouldLockScroll = states.some((i) => i === true);
+            document.querySelector("body").style.overflow = shouldLockScroll ? "hidden" : "auto";
+        };
+
         handleScroll();
+
         window.addEventListener("scroll", handleScroll);
 
         return () => {
