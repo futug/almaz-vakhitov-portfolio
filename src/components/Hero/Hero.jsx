@@ -136,7 +136,7 @@ const Hero = ({ timeline, lang }) => {
                     {breakpoint === "laptop" || breakpoint === "tablet" ? (
                         <div className={styles.buttonWrapper}>
                             <button className={styles.button} onClick={showMore}>
-                                {visible >= heroVidePreviews.length ? "Hide all" : "Show more"}
+                                {visible >= heroVidePreviews.length ? t("hideButton") : t("showButton")}
                             </button>
                         </div>
                     ) : null}
