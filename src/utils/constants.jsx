@@ -65,7 +65,7 @@ export const VIDEO_PREVIEWS_LEFT = [
         srcJpeg: "./image2.jpg",
         srcWebp: "./image2.webp",
         title: '"Never do this"| Ruslan Polyakov',
-        titleRu: '"Bunu asla yapma" | Ruslan Polyakov',
+        titleRu: '"Никогда так не делай" | Руслан Поляков',
         titleTr: '"Bunu asla yapma" | Ruslan Polyakov',
         src: `${BASE_YOUTUBE_URL}egWJ6UcqSo4${YOUTUBE_AUTOPLAY_QUERRY}`,
     },
