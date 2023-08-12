@@ -1,6 +1,7 @@
 import React from "react";
 import styles from "./SliderItem.module.css";
 import { ReactComponent as Quotes } from "../../assets/quotes.svg";
+import { IoIosContact } from "react-icons/io";
 
 const SliderItem = (props) => {
     return (
@@ -15,7 +16,15 @@ const SliderItem = (props) => {
                     </div>
                 </div>
                 <div className={styles.itemFooter}>
-                    <p className={styles.itemAuthor}>{props.quoteAuthor}</p>
+                    <p className={styles.itemAuthor}>
+                        {" "}
+                        {props.socialLink ? (
+                            <a className={styles.itemAuthorLink} href={props.socialLink} target="_blank">
+                                <IoIosContact size={15} />
+                            </a>
+                        ) : null}
+                        {props.quoteAuthor}
+                    </p>
                 </div>
             </div>
         </div>

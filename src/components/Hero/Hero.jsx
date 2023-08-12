@@ -140,6 +140,11 @@ const Hero = ({ timeline, lang }) => {
                             </button>
                         </div>
                     ) : null}
+                    {heroVidePreviews.length > 6 ? (
+                        <div className={styles.LinkWrapper}>
+                            <button className={styles.button}>Больше видео</button>
+                        </div>
+                    ) : null}
                 </div>
             </div>
 

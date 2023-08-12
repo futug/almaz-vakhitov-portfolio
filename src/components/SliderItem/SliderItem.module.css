@@ -34,6 +34,14 @@
     margin: 20px 0 0 auto;
     font-size: 14px;
     position: relative;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.itemAuthorLink {
+    display: flex;
+    align-items: center;
 }
 
 @media (max-width: 768px) {

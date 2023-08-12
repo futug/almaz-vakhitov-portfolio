@@ -150,6 +150,11 @@
     color: #101110;
 }
 
+.LinkWrapper {
+    display: flex;
+    justify-content: flex-end;
+}
+
 @media (max-width: 1438px) {
     .heroItems {
         justify-content: center;

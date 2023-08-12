@@ -28,6 +28,7 @@ const Feedback = ({ lang }) => {
                         {quotes.map((item) => (
                             <SwiperSlide key={item.id}>
                                 <SliderItem
+                                    socialLink={item.quoteLink !== null && item.quoteLink !== undefined ? item.quoteLink : undefined}
                                     qouteText={lang === "en" ? item.quoteEng : lang === "ru" ? item.quoteRu : item.quoteTr}
                                     quoteAuthor={lang === "en" ? item.nameEng : lang === "ru" ? item.nameRu : item.nameTr}
                                 />
