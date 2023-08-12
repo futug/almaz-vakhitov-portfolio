@@ -82,7 +82,7 @@ export const VIDEO_PREVIEWS_LEFT = [
         id: 5,
         srcJpeg: "./image6.jpg",
         srcWebp: "./image6.webp",
-        title: 'Concept" Sneakers Shop',
+        title: '"Concept" Sneakers Shop',
         titleRu: 'Магазин "Концепт"',
         titleTr: "Spor Ayakkabı Mağazası",
         src: `${BASE_YOUTUBE_URL}zfcG9sTkUCc${YOUTUBE_AUTOPLAY_QUERRY}`,
