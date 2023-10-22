@@ -11,7 +11,6 @@ import { Footer } from "./components/Footer/Footer";
 
 import { gsap, Power3 } from "gsap";
 import { PacmanLoader } from "react-spinners";
-import LocomotiveScroll from "locomotive-scroll";
 
 function App() {
     const [isLoading, setIsLoading] = useState(true);
@@ -24,20 +23,6 @@ function App() {
     };
 
     let containerRef = useRef();
-    // useEffect(() => {
-    //     const locomotiveScroll = new LocomotiveScroll({
-    //         el: containerRef.current,
-    //         smooth: true,
-    //         direction: "vertical",
-    //         smartphone: {
-    //             smooth: true,
-    //         },
-    //     });
-
-    //     return () => {
-    //         locomotiveScroll.destroy();
-    //     };
-    // }, []);
 
     useEffect(() => {
         const timer = setTimeout(() => {

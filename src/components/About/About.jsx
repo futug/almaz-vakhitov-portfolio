@@ -5,7 +5,13 @@ import { useTranslation } from "react-i18next";
 
 import { motion } from "framer-motion";
 
-const About = () => {
+const About = (props) => {
+    const birthDate = new Date("1994-10-21");
+    const currentDate = new Date();
+    const timeDifference = currentDate.getTime() - birthDate.getTime();
+    const ageInMilliseconds = new Date(timeDifference);
+    const ageInYears = ageInMilliseconds.getUTCFullYear() - 1970;
+
     const fadeLeft = {
         hidden: (custom) => ({
             opacity: 0,
@@ -111,7 +117,10 @@ const About = () => {
                         </div>
                         <motion.div custom={6} variants={fadeRight} className={styles.leftSideWrapper}>
                             <p className={styles.name}>{t("aboutName")}:</p>
-                            <p className={styles.description}>{t("aboutDescOne")}</p>
+                            <p className={styles.description}>
+                                {props.lang === "ru" ? <span>Я {ageInYears}</span> : props.lang === "en" ? <span>I am a {ageInYears}</span> : null}
+                                {t("aboutDescOne")}
+                            </p>
                             <p className={styles.description}>{t("aboutDescTwo")}</p>
                             <p className={styles.description}>{t("aboutDescThree")}</p>
                             <p className={styles.description}>{t("aboutDescFour")}</p>
